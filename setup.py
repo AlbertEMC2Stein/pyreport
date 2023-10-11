@@ -3,10 +3,6 @@ import subprocess
 from sys import executable, version
 from os.path import split
 from os import chmod
-
-from pip._internal import main as pipmain
-pipmain(['install', 'gitpython pdoc3'])
-
 from PyReport import get_info
 
 ###########################################################

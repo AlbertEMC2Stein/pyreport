@@ -1,15 +1,25 @@
 """PyReport - A Python package for creating LaTeX reports from within your code!"""
 
 import os.path as path
-import git
+from os import listdir
 
-_repo = git.Repo('.git')
-_tags = sorted(_repo.tags, key=lambda t: t.commit.committed_datetime)
+def get_tags():
+    def get_creation_time(item):
+        item_path = path.join('.git/refs/tags', item)
+        return path.getctime(item_path)
+
+    items = listdir('.git/refs/tags')
+    sorted_items = sorted(items, key=get_creation_time)
+    return sorted_items
+
+_tags = get_tags()
 
 if len(_tags) == 0:
     _latest_tag = "0.0.0"
 else:
     _latest_tag = str(_tags[-1])[1:]
+
+print(f"Latest tag: {_latest_tag}")
 
 #######################################################
 
