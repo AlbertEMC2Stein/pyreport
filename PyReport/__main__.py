@@ -8,7 +8,9 @@ def run_docs(args):
     sys.path.append(os.path.join(ROOT_DIR, 'docs'))
     
     from docs.makedocs import build
+    print("Building documentation...")
     build(args.output_directory, args.keep_temporary_files)
+    print("Done!")
 
 def cli_entry():
     parser = ap.ArgumentParser(

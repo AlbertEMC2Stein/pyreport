@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-import subprocess
 from sys import executable, version
 from os.path import split
 from os import chmod

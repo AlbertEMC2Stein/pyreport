@@ -19,8 +19,6 @@ if len(_tags) == 0:
 else:
     _latest_tag = str(_tags[-1])[1:]
 
-print(f"Latest tag: {_latest_tag}")
-
 #######################################################
 
 ROOT_DIR = path.dirname(path.dirname(path.abspath(__file__)))
