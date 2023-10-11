@@ -4,3 +4,6 @@ __pycache__
 
 # MacOs
 .DS_Store
+
+# Environment
+.env

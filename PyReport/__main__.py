@@ -38,4 +38,6 @@ def cli_entry():
 ########################################################################
 
 if __name__ == "__main__":
+    print("PyReport version", get_info()["version"])
+
     cli_entry()

@@ -13,8 +13,6 @@ else:
 
 #######################################################
 
-print("PyReport version", _latest_tag)
-
 ROOT_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 def get_info():
