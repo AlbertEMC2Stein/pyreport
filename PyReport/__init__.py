@@ -3,7 +3,7 @@
 import os.path as path
 from os import listdir
 
-def get_tags():
+def _get_tags():
     def get_creation_time(item):
         item_path = path.join('.git/refs/tags', item)
         return path.getctime(item_path)
@@ -12,7 +12,7 @@ def get_tags():
     sorted_items = sorted(items, key=get_creation_time)
     return sorted_items
 
-_tags = get_tags()
+_tags = _get_tags()
 
 if len(_tags) == 0:
     _latest_tag = "0.0.0"
