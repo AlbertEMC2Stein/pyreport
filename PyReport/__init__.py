@@ -21,6 +21,8 @@ else:
 
 #######################################################
 
+from ._utils import ReportMaker
+
 ROOT_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 def get_info():
@@ -33,3 +35,5 @@ def get_info():
         "author_email": "prokosch@rhrk.uni-kl.de",
         "license": "TBA"
     }
+
+__all__ = ["ReportMaker", "get_info"]
