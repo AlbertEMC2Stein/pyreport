@@ -12,6 +12,13 @@ def run_docs(args):
     build(args.output_directory, args.keep_temporary_files)
     print("Done!")
 
+def run_test(args):
+    from ._utils import make_test_report
+
+    print("Building test report...")
+    make_test_report()
+
+
 def cli_entry():
     parser = ap.ArgumentParser(
         prog='PyReport',
@@ -29,6 +36,10 @@ def cli_entry():
     parser_docs.add_argument('-o', '--output-directory', type=str, default='.', dest='output_directory', help="Output directory (default: '.')")
     parser_docs.add_argument('-k', '--keep', action='store_true', dest='keep_temporary_files', help='Keep temporary files')
     parser_docs.set_defaults(func=run_docs)
+
+    # Test report
+    parser_test = subparsers.add_parser('test', help='build test report')
+    parser_test.set_defaults(func=run_test)
 
     args = parser.parse_args()
     try:
