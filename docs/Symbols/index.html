@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>PyReport API documentation</title>
-<meta name="description" content="PyReport - A Python package for creating LaTeX reports from within your code!" />
+<title>PyReport.Symbols API documentation</title>
+<meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css" crossorigin>
@@ -21,15 +21,18 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Package <code>PyReport</code></h1>
+<h1 class="title">Module <code>PyReport.Symbols</code></h1>
 </header>
 <section id="section-intro">
-<p>PyReport - A Python package for creating LaTeX reports from within your code!</p>
 </section>
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
-<dt><code class="name"><a title="PyReport.Symbols" href="Symbols/index.html">PyReport.Symbols</a></code></dt>
+<dt><code class="name"><a title="PyReport.Symbols.greek" href="greek.html">PyReport.Symbols.greek</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="PyReport.Symbols.hebrew" href="hebrew.html">PyReport.Symbols.hebrew</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -38,29 +41,65 @@
 <section>
 </section>
 <section>
-<h2 class="section-title" id="header-functions">Functions</h2>
-<dl>
-<dt id="PyReport.get_info"><code class="name flex">
-<span>def <span class="ident">get_info</span></span>(<span>)</span>
-</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-</dl>
 </section>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="PyReport.ReportMaker"><code class="flex name class">
-<span>class <span class="ident">ReportMaker</span></span>
-<span>(</span><span>report_name)</span>
+<dt id="PyReport.Symbols.SymbolInterface"><code class="flex name class">
+<span>class <span class="ident">SymbolInterface</span></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
-<h3>Methods</h3>
+<div class="desc"><p>This class represents the symbol <span><span class="MathJax_Preview">[Symbol\_Command]</span><script type="math/tex">[Symbol\_Command]</script></span> ([Symbol_Name]).</p></div>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="PyReport.Symbols.greek.Delta" href="greek.html#PyReport.Symbols.greek.Delta">Delta</a></li>
+<li><a title="PyReport.Symbols.greek.Gamma" href="greek.html#PyReport.Symbols.greek.Gamma">Gamma</a></li>
+<li><a title="PyReport.Symbols.greek.Lambda" href="greek.html#PyReport.Symbols.greek.Lambda">Lambda</a></li>
+<li><a title="PyReport.Symbols.greek.Omega" href="greek.html#PyReport.Symbols.greek.Omega">Omega</a></li>
+<li><a title="PyReport.Symbols.greek.Phi" href="greek.html#PyReport.Symbols.greek.Phi">Phi</a></li>
+<li><a title="PyReport.Symbols.greek.Pi" href="greek.html#PyReport.Symbols.greek.Pi">Pi</a></li>
+<li><a title="PyReport.Symbols.greek.Psi" href="greek.html#PyReport.Symbols.greek.Psi">Psi</a></li>
+<li><a title="PyReport.Symbols.greek.Sigma" href="greek.html#PyReport.Symbols.greek.Sigma">Sigma</a></li>
+<li><a title="PyReport.Symbols.greek.Theta" href="greek.html#PyReport.Symbols.greek.Theta">Theta</a></li>
+<li><a title="PyReport.Symbols.greek.Upsilon" href="greek.html#PyReport.Symbols.greek.Upsilon">Upsilon</a></li>
+<li><a title="PyReport.Symbols.greek.Xi" href="greek.html#PyReport.Symbols.greek.Xi">Xi</a></li>
+<li><a title="PyReport.Symbols.greek.alpha" href="greek.html#PyReport.Symbols.greek.alpha">alpha</a></li>
+<li><a title="PyReport.Symbols.greek.beta" href="greek.html#PyReport.Symbols.greek.beta">beta</a></li>
+<li><a title="PyReport.Symbols.greek.chi" href="greek.html#PyReport.Symbols.greek.chi">chi</a></li>
+<li><a title="PyReport.Symbols.greek.delta" href="greek.html#PyReport.Symbols.greek.delta">delta</a></li>
+<li><a title="PyReport.Symbols.greek.epsilon" href="greek.html#PyReport.Symbols.greek.epsilon">epsilon</a></li>
+<li><a title="PyReport.Symbols.greek.eta" href="greek.html#PyReport.Symbols.greek.eta">eta</a></li>
+<li><a title="PyReport.Symbols.greek.gamma" href="greek.html#PyReport.Symbols.greek.gamma">gamma</a></li>
+<li><a title="PyReport.Symbols.greek.iota" href="greek.html#PyReport.Symbols.greek.iota">iota</a></li>
+<li><a title="PyReport.Symbols.greek.kappa" href="greek.html#PyReport.Symbols.greek.kappa">kappa</a></li>
+<li><a title="PyReport.Symbols.greek.lambda_" href="greek.html#PyReport.Symbols.greek.lambda_">lambda_</a></li>
+<li><a title="PyReport.Symbols.greek.mu" href="greek.html#PyReport.Symbols.greek.mu">mu</a></li>
+<li><a title="PyReport.Symbols.greek.nu" href="greek.html#PyReport.Symbols.greek.nu">nu</a></li>
+<li><a title="PyReport.Symbols.greek.omega" href="greek.html#PyReport.Symbols.greek.omega">omega</a></li>
+<li><a title="PyReport.Symbols.greek.phi" href="greek.html#PyReport.Symbols.greek.phi">phi</a></li>
+<li><a title="PyReport.Symbols.greek.pi" href="greek.html#PyReport.Symbols.greek.pi">pi</a></li>
+<li><a title="PyReport.Symbols.greek.psi" href="greek.html#PyReport.Symbols.greek.psi">psi</a></li>
+<li><a title="PyReport.Symbols.greek.rho" href="greek.html#PyReport.Symbols.greek.rho">rho</a></li>
+<li><a title="PyReport.Symbols.greek.sigma" href="greek.html#PyReport.Symbols.greek.sigma">sigma</a></li>
+<li><a title="PyReport.Symbols.greek.tau" href="greek.html#PyReport.Symbols.greek.tau">tau</a></li>
+<li><a title="PyReport.Symbols.greek.theta" href="greek.html#PyReport.Symbols.greek.theta">theta</a></li>
+<li><a title="PyReport.Symbols.greek.upsilon" href="greek.html#PyReport.Symbols.greek.upsilon">upsilon</a></li>
+<li><a title="PyReport.Symbols.greek.varepsilon" href="greek.html#PyReport.Symbols.greek.varepsilon">varepsilon</a></li>
+<li><a title="PyReport.Symbols.greek.varphi" href="greek.html#PyReport.Symbols.greek.varphi">varphi</a></li>
+<li><a title="PyReport.Symbols.greek.varpi" href="greek.html#PyReport.Symbols.greek.varpi">varpi</a></li>
+<li><a title="PyReport.Symbols.greek.varrho" href="greek.html#PyReport.Symbols.greek.varrho">varrho</a></li>
+<li><a title="PyReport.Symbols.greek.vartheta" href="greek.html#PyReport.Symbols.greek.vartheta">vartheta</a></li>
+<li><a title="PyReport.Symbols.greek.xi" href="greek.html#PyReport.Symbols.greek.xi">xi</a></li>
+<li><a title="PyReport.Symbols.greek.zeta" href="greek.html#PyReport.Symbols.greek.zeta">zeta</a></li>
+<li><a title="PyReport.Symbols.hebrew.aleph" href="hebrew.html#PyReport.Symbols.hebrew.aleph">aleph</a></li>
+<li><a title="PyReport.Symbols.hebrew.beth" href="hebrew.html#PyReport.Symbols.hebrew.beth">beth</a></li>
+<li><a title="PyReport.Symbols.hebrew.daleth" href="hebrew.html#PyReport.Symbols.hebrew.daleth">daleth</a></li>
+<li><a title="PyReport.Symbols.hebrew.gimel" href="hebrew.html#PyReport.Symbols.hebrew.gimel">gimel</a></li>
+</ul>
+<h3>Static methods</h3>
 <dl>
-<dt id="PyReport.ReportMaker.make"><code class="name flex">
-<span>def <span class="ident">make</span></span>(<span>self)</span>
+<dt id="PyReport.Symbols.SymbolInterface.toTeX"><code class="name flex">
+<span>def <span class="ident">toTeX</span></span>(<span>)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -110,7 +149,7 @@ const query = new URL(window.location).searchParams.get('q');
 if (query)
 search(query);
 function search(query) {
-const url = './doc-search.html#' + encodeURIComponent(query);
+const url = '../../doc-search.html#' + encodeURIComponent(query);
 new tingle.modal({
 cssClass: ['modal-dialog'],
 onClose: () => {
@@ -127,22 +166,23 @@ setTimeout(() => input.focus(), 100);
 <ul></ul>
 </div>
 <ul id="index">
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<li><h3>Super-module</h3>
 <ul>
-<li><code><a title="PyReport.Symbols" href="Symbols/index.html">PyReport.Symbols</a></code></li>
+<li><code><a title="PyReport" href="../index.html">PyReport</a></code></li>
 </ul>
 </li>
-<li><h3><a href="#header-functions">Functions</a></h3>
-<ul class="">
-<li><code><a title="PyReport.get_info" href="#PyReport.get_info">get_info</a></code></li>
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="PyReport.Symbols.greek" href="greek.html">PyReport.Symbols.greek</a></code></li>
+<li><code><a title="PyReport.Symbols.hebrew" href="hebrew.html">PyReport.Symbols.hebrew</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="PyReport.ReportMaker" href="#PyReport.ReportMaker">ReportMaker</a></code></h4>
+<h4><code><a title="PyReport.Symbols.SymbolInterface" href="#PyReport.Symbols.SymbolInterface">SymbolInterface</a></code></h4>
 <ul class="">
-<li><code><a title="PyReport.ReportMaker.make" href="#PyReport.ReportMaker.make">make</a></code></li>
+<li><code><a title="PyReport.Symbols.SymbolInterface.toTeX" href="#PyReport.Symbols.SymbolInterface.toTeX">toTeX</a></code></li>
 </ul>
 </li>
 </ul>
