@@ -48,15 +48,6 @@ def modify_docfiles():
         html = f.read()
         html = html.replace("../", "./")
 
-        modules = [
-            module.name
-            for module in Path(DOCS_DIR, PACKAGE_NAME).rglob("*")
-            if module.name != "index.html"
-        ]
-
-        for module in modules:
-            html = html.replace(f'href="{module}"', f'href="{PACKAGE_NAME}/{module}"')
-
         with open(path.join(DOCS_DIR, "index.html"), "w", encoding="utf8") as f:
             f.write(html)
 
