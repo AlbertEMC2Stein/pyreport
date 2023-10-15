@@ -13,7 +13,7 @@ def run_docs(args):
     print("Done!")
 
 def run_test(args):
-    from ._utils import make_test_report
+    from .report import make_test_report
 
     print("Building test report...")
     make_test_report()
@@ -21,9 +21,9 @@ def run_test(args):
 
 def cli_entry():
     parser = ap.ArgumentParser(
-        prog='PyReport',
+        prog='pyreport',
         description=get_info()['description'],
-        epilog='For more information, visit: https://github.com/AlbertEMC2Stein/PyReport'
+        epilog='For more information, visit: https://github.com/AlbertEMC2Stein/pyreport'
     )
     parser.add_argument('-v', '--version', action='version', version=get_info()['version'])
     parser._positionals.title = 'Commands'
@@ -51,6 +51,6 @@ def cli_entry():
 ########################################################################
 
 if __name__ == "__main__":
-    print("PyReport version", get_info()["version"])
+    print("pyreport version", get_info()["version"])
 
     cli_entry()

@@ -1,4 +1,4 @@
-"""PyReport - A Python package for creating LaTeX reports from within your code!"""
+"""pyreport - A Python package for creating LaTeX reports from within your code!"""
 
 import os.path as path
 from os import listdir
@@ -21,19 +21,17 @@ else:
 
 #######################################################
 
-from ._utils import ReportMaker
-
 ROOT_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 def get_info():
     return {
-        "name": "PyReport",
+        "name": "pyreport",
         "version": _latest_tag,
         "description": __doc__,
-        "url": "https://github.com/AlbertEMC2Stein/PyReport",
+        "url": "https://github.com/AlbertEMC2Stein/pyreport",
         "author": "Tim Prokosch",
         "author_email": "prokosch@rhrk.uni-kl.de",
         "license": "TBA"
     }
 
-__all__ = ["ReportMaker", "get_info"]
+__all__ = ['get_info']

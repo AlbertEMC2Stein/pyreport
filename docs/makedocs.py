@@ -3,7 +3,7 @@ import zipfile
 import os.path as path
 from os import remove, system, listdir
 from pathlib import Path
-from PyReport import ROOT_DIR, get_info
+from pyreport import ROOT_DIR, get_info
 
 PACKAGE_NAME = get_info()['name']
 PACKAGE_DIR = path.join(ROOT_DIR, PACKAGE_NAME)
@@ -24,7 +24,7 @@ def clear_files():
 def compress(file_names, output_directory):
     compression = zipfile.ZIP_DEFLATED
 
-    zf = zipfile.ZipFile(path.join(output_directory, "PyReport_documentation.zip"), mode="w")
+    zf = zipfile.ZipFile(path.join(output_directory, "pyreport_documentation.zip"), mode="w")
 
     try:
         for file_name in file_names:
