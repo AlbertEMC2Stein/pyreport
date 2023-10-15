@@ -6,7 +6,6 @@ from ._utils import get_tags
 __all__ = ["get_info"]
 
 ROOT_DIR = path.dirname(path.dirname(path.abspath(__file__)))
-print(ROOT_DIR)
 TAGS = get_tags(ROOT_DIR)
 LATEST_TAG = "0.0.0"
 
