@@ -57,10 +57,9 @@ def modify_docfiles():
             f.write(js)
 
     for file in listdir(path.join(DOCS_DIR, PACKAGE_NAME)):
-        if path.isdir(path.join(DOCS_DIR, PACKAGE_NAME, file)):
-            old = path.join(DOCS_DIR, PACKAGE_NAME, file)
-            new = path.join(DOCS_DIR, file)
-            shutil.move(old, new)
+        old = path.join(DOCS_DIR, PACKAGE_NAME, file)
+        new = path.join(DOCS_DIR, file)
+        shutil.move(old, new)
 
 
 ########################################################################
