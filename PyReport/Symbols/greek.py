@@ -5,10 +5,10 @@ from pyreport._utils import Switch
 __all__ = [
     'DEFAULT_VAREPSILON', 'DEFAULT_VARTHETA', 'DEFAULT_VARPI', 'DEFAULT_VARRHO',
     'DEFAULT_VARPHI', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'varepsilon',
-    'zeta', 'eta', 'theta', 'vartheta', 'iota', 'kappa', 'lambda_', 'mu', 'nu', 'xi',
-    'pi', 'varpi', 'rho', 'varrho', 'sigma', 'tau', 'upsilon', 'phi', 'varphi', 'chi',
-    'psi', 'omega', 'Gamma', 'Delta', 'Theta', 'Lambda', 'Xi', 'Pi', 'Sigma',
-    'Upsilon', 'Phi', 'Psi', 'Omega'
+    'zeta', 'eta', 'theta', 'vartheta', 'iota', 'kappa', 'lambda_', 'mu', 'nu',
+    'xi', 'pi', 'varpi', 'rho', 'varrho', 'sigma', 'tau', 'upsilon', 'phi',
+    'varphi', 'chi', 'psi', 'omega', 'Gamma', 'Delta', 'Theta', 'Lambda', 'Xi',
+    'Pi', 'Sigma', 'Upsilon', 'Phi', 'Psi', 'Omega'
 ]
 
 
