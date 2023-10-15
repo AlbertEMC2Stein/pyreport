@@ -1,7 +1,7 @@
-__all__ = ['symbol']
+__all__ = ['Symbol']
 
 
-class symbol: 
+class Symbol:
     def __init__(self, name, default_latex, alternate_latex=None, switch=lambda: False):
         self._name = name
         self._default_latex = default_latex
@@ -10,14 +10,22 @@ class symbol:
 
     @property
     def __doc__(self):
-        addendum = f" or alternatively \\({self._alternate_latex}\\) depending on {self._switch.name}." \
-            if self._alternate_latex \
+        addendum = (
+            f" or alternatively \\({self._alternate_latex}\\) \
+            depending on {self._switch.name}."
+            if self._alternate_latex
             else "."
-        
-        return f"This class represents the symbol \\({self._default_latex}\\) ({self._name}){addendum}"
-    
-    def toTeX(self):
-        return self._alternate_latex if (self._alternate_latex and self._switch()) else self._default_latex
+        )
 
-    def toPlain(self):
+        return f"This class represents the symbol \\({self._default_latex}\\) \
+               ({self._name}){addendum}"
+
+    def to_tex(self):
+        return (
+            self._alternate_latex
+            if (self._alternate_latex and self._switch())
+            else self._default_latex
+        )
+
+    def to_plain(self):
         return self._name

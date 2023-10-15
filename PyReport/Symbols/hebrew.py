@@ -1,10 +1,10 @@
-from pyreport.symbols import symbol
+from pyreport.symbols import Symbol
 
 
 __all__ = ['aleph', 'beth', 'daleth', 'gimel']
 
 
-aleph  = symbol('aleph', r"\aleph")
-beth   = symbol('beth', r"\beth")
-daleth = symbol('daleth', r"\daleth")
-gimel  = symbol('gimel', r"\gimel")
+aleph  = Symbol('aleph', r"\aleph")
+beth   = Symbol('beth', r"\beth")
+daleth = Symbol('daleth', r"\daleth")
+gimel  = Symbol('gimel', r"\gimel")

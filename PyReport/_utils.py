@@ -1,7 +1,10 @@
-__all__ = ['switch']
+import os.path as path
+from os import listdir
+
+__all__ = ["Switch", "get_tags"]
 
 
-class switch:
+class Switch:
     def __init__(self, name, option1, option2):
         self.name = name
         self.option1 = option1
@@ -16,7 +19,7 @@ class switch:
 
     def __call__(self):
         return self.current
-    
+
 
 #####################################################################
 
@@ -27,11 +30,26 @@ def restricted_get(kwargs, key, allowed_keys_or_type, default):
             if kwargs[key] in allowed_keys_or_type:
                 return kwargs[key]
             else:
-                raise TypeError(f"Value for '{key}' must be one of {allowed_keys_or_type}.")
+                raise TypeError(
+                    f"Value for '{key}' must be one of {allowed_keys_or_type}."
+                )
         elif isinstance(allowed_keys_or_type, type):
             if isinstance(kwargs[key], allowed_keys_or_type):
                 return kwargs[key]
             else:
-                raise TypeError(f"Value for '{key}' must be of type {allowed_keys_or_type}.")
+                raise TypeError(
+                    f"Value for '{key}' must be of type {allowed_keys_or_type}."
+                )
     else:
         return default
+
+
+def get_tags(root):
+    tags_path = path.join(root, ".git/refs/tags")
+    def get_creation_time(item):
+        item_path = path.join(tags_path, item)
+        return path.getctime(item_path)
+
+    items = listdir(tags_path)
+    sorted_items = sorted(items, key=get_creation_time)
+    return sorted_items
