@@ -29,3 +29,11 @@ class Symbol:
 
     def to_plain(self):
         return self._name
+
+
+class Collection:
+    def __init__(self, name):
+        self.name = name
+
+    def add_symbol(self, symbol):
+        setattr(self, symbol.name, symbol)
