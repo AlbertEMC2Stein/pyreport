@@ -1,4 +1,6 @@
-__all__ = ['Symbol']
+from abc import ABC, abstractmethod
+
+__all__ = ["Symbol"]
 
 
 class Symbol:
@@ -31,9 +33,17 @@ class Symbol:
         return self._name
 
 
-class Collection:
-    def __init__(self, name):
-        self.name = name
+class SymbolCollection(ABC):
+    _members = {}
 
-    def add_symbol(self, symbol):
-        setattr(self, symbol.name, symbol)
+    @classmethod
+    @abstractmethod
+    def get_members(cls):
+        return cls._members
+
+    @classmethod
+    @abstractmethod
+    def list_members(cls):
+        print(f"Symbols in {cls.__name__} [{len(cls._members)}]:")
+        for symbol in cls._members.values():
+            print(f"\t- {symbol.to_plain()}")
