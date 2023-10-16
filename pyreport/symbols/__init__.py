@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-__all__ = ["Symbol"]
+__all__ = ["Symbol", "SymbolCollection"]
 
 
 class Symbol:
