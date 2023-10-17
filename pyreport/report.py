@@ -2,7 +2,7 @@ import os
 from abc import ABC, abstractmethod
 from ._utils import restricted_get, indented_write
 
-__all__ = ["ReportKwargs", "Reporter", "ReportError", "make_test_report"]
+__all__ = ["ReportKwargs", "Reporter", "ReportError", "Segment", "make_test_report"]
 
 ###########################################################################################
 
