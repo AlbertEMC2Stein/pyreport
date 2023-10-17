@@ -1,3 +1,10 @@
+"""A module to create LaTeX reports.
+
+This module provides a class to create LaTeX reports. It is based on the
+LaTeX document classes 'article' and 'report'. The report is created in the
+'out' folder and is compiled with 'latexmk'.
+"""
+
 import os
 from abc import ABC, abstractmethod
 from ._utils import restricted_get, indented_write
@@ -6,32 +13,39 @@ __all__ = ["ReportKwargs", "Reporter", "ReportError", "Segment", "make_test_repo
 
 ###########################################################################################
 
-
 class ReportKwargs:
+    """A class to hold the arguments for the report.
+
+    Methods
+    -------
+    to_dict:
+        Returns a dictionary with the arguments.
+    """
+
     def __init__(self, **kwargs):
         """A class to hold the arguments for the report.
 
         Parameters
         ----------
-        type : "article"|"report", optional
+        type: {"article", "report"}, optional
             Type of report, by default "report"
-        fontsize : 10|11|12, optional
+        fontsize: {10, 11, 12}, optional
             Font size, by default 12
-        columns : "onecolumn"|"twocolumn", optional
+        columns: {"onecolumn", "twocolumn"}, optional
             Number of columns, by default "onecolumn"
-        titlepage : "notitlepage"|"titlepage", optional
+        titlepage: {"notitlepage", "titlepage"}, optional
             Title page, by default "notitlepage"
-        packages : list, optional
+        packages: list, optional
             List of packages to import, by default []
-        author : str, optional
-            Author of report, by default None
-        title : str, optional
-            Title of report, by default None
-        date : str, optional
+        author: str, optional
+            Author of report, by default ""
+        title: str, optional
+            Title of report, by default ""
+        date: str, optional
             Date of report, by default "\\today"
-        maketitle : bool, optional
-            Make title, by default True
-        maketoc : bool, optional
+        maketitle: bool, optional
+            Make title, by default True.
+        maketoc: bool, optional
             Make table of contents, by default False
         """
 
@@ -51,6 +65,7 @@ class ReportKwargs:
         self.maketoc = restricted_get(kwargs, "maketoc", bool, False)
 
     def to_dict(self):
+        """Returns a dictionary with the arguments."""
         return {
             "type": self.type,
             "fontsize": self.fontsize,
@@ -313,7 +328,9 @@ def make_test_report():
     report_kwargs = ReportKwargs(
         author="Albert Einstein",
         title="Annalen der Physik",
+        date="",
         maketoc=True,
+        maketitle=False,
         type="report",
         titlepage="notitlepage",
     )
