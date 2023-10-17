@@ -105,8 +105,8 @@ class ReportError(Exception):
 class Environment(ABC):
     @abstractmethod
     def __init__(self, name):
-        self.name = name
-        self.contents = []
+        self.__name = name
+        self.__contents = []
 
     @abstractmethod
     def texify(self, file, indent_level=0):
@@ -114,38 +114,38 @@ class Environment(ABC):
 
     def add_to_content(self, obj):
         assert not isinstance(obj, Document), "Cannot add Document to Environment."
-        self.contents.append(obj)
+        self.__contents.append(obj)
 
     def print_structure(self, indent_level=0):
-        result = f"{self.name}\n"
-        for content in self.contents:
+        result = f"{self.__name}\n"
+        for content in self.__contents:
             if isinstance(content, Environment):
                 result += indent_level * "   " + f"|-- {content.print_structure(indent_level + 1)}"
 
     def __str__(self):
-        return f"Environment: {self.name:<12}"
+        return f"Environment: {self.__name:<12}"
     
 
 class Document(Environment):
     def __init__(self, name="document", **kwargs):
         super().__init__(name)
-        self.type = kwargs["type"]
-        self.titlepage = kwargs["titlepage"]
-        self.maketitle = kwargs["maketitle"]
-        self.maketoc = kwargs["maketoc"]
+        self.__type = kwargs["type"]
+        self.__titlepage = kwargs["titlepage"]
+        self.__maketitle = kwargs["maketitle"]
+        self.__maketoc = kwargs["maketoc"]
 
     def texify(self, file, indent_level=0):
         indented_write(file, indent_level, "\\begin{document}")
-        indented_write(file, indent_level + 1, "\\maketitle\n" if self.maketitle else "", end="")
+        indented_write(file, indent_level + 1, "\\maketitle\n" if self.__maketitle else "", end="")
 
         # small hack because those two options interfere with each other
         toc_command = r"\tableofcontents"
-        if self.titlepage == "notitlepage" and self.type == "report":
+        if self.__titlepage == "notitlepage" and self.__type == "report":
             toc_command = r"{\let\clearpage\relax\tableofcontents}" 
 
-        indented_write(file, indent_level + 1, toc_command + "\n" if self.maketoc else "")
+        indented_write(file, indent_level + 1, toc_command + "\n" if self.__maketoc else "")
         
-        for content in self.contents:
+        for content in self.__contents:
             content.texify(file, indent_level + 1)
 
         indented_write(file, indent_level, "\\end{document}")
@@ -154,15 +154,15 @@ class Document(Environment):
 class Section(Environment):
     def __init__(self, name, label, asterisk=False):
         super().__init__(name)
-        self.label = label
-        self.asterisk = asterisk
+        self.__label = label
+        self.__asterisk = asterisk
 
     def texify(self, file, indent_level=0): 
-        asterisk = "*" if self.asterisk else ""
-        indented_write(file, indent_level, f"\\section{asterisk}{{{self.name}}}")
-        indented_write(file, indent_level, f"\\label{{sec::{self.label}}}")
+        asterisk = "*" if self.__asterisk else ""
+        indented_write(file, indent_level, f"\\section{asterisk}{{{self.__name}}}")
+        indented_write(file, indent_level, f"\\label{{sec::{self.__label}}}")
 
-        for content in self.contents:
+        for content in self.__contents:
             content.texify(file, indent_level + 1)
 
         indented_write(file, 0, "")
@@ -173,34 +173,34 @@ class Section(Environment):
 
 class LatexObject(ABC):
     def __init__(self, name):
-        self.name = name
+        self.__name = name
 
     @abstractmethod
     def texify(self, file, indent_level=0):
         pass
 
     def __str__(self):
-        return f"LatexObject: {self.name:<12}"
+        return f"LatexObject: {self.__name:<12}"
     
 
 class Preamble(LatexObject):
     def __init__(self, name="preamble", **kwargs):
         super().__init__(name)
-        self.type = kwargs["type"]
-        self.fontsize = kwargs["fontsize"]
-        self.columns = kwargs["columns"]
-        self.titlepage = kwargs["titlepage"]
-        self.packages = kwargs["packages"]
-        self.author = kwargs["author"]  
-        self.title = kwargs["title"]
-        self.date = kwargs["date"]
+        self.__type = kwargs["type"]
+        self.__fontsize = kwargs["fontsize"]
+        self.__columns = kwargs["columns"]
+        self.__titlepage = kwargs["titlepage"]
+        self.__packages = kwargs["packages"]
+        self.__author = kwargs["author"]  
+        self.__title = kwargs["title"]
+        self.__date = kwargs["date"]
 
     def texify(self, file, indent_level=0):
         head = "\\documentclass[%dpt, %s, %s]{%s}" % (
-            self.fontsize,
-            self.columns,
-            self.titlepage,
-            self.type,
+            self.__fontsize,
+            self.__columns,
+            self.__titlepage,
+            self.__type,
         )
 
         indented_write(file, indent_level, head)
@@ -210,21 +210,21 @@ class Preamble(LatexObject):
         indented_write(file, indent_level, "\\usepackage{graphicx}")
         indented_write(file, indent_level, "\\usepackage{hyperref}")
 
-        for package in self.packages:
+        for package in self.__packages:
             indented_write(file, indent_level, f"\\usepackage{{{package}}}")
 
-        indented_write(file, indent_level, f"\n\\author{{{self.author}}}")
-        indented_write(file, indent_level, f"\\title{{{self.title}}}")
-        indented_write(file, indent_level, f"\\date{{{self.date}}}\n")
+        indented_write(file, indent_level, f"\n\\author{{{self.__author}}}")
+        indented_write(file, indent_level, f"\\title{{{self.__title}}}")
+        indented_write(file, indent_level, f"\\date{{{self.__date}}}\n")
 
 
 class PlainText(LatexObject):
     def __init__(self, text):
         super().__init__("plaintext")
-        self.text = text
+        self.__text = text
 
     def texify(self, file, indent_level=0):
-        indented_write(file, indent_level, self.text)
+        indented_write(file, indent_level, self.__text)
 
 
 ###########################################################################################
