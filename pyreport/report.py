@@ -82,7 +82,7 @@ class Reporter:
             if not os.path.exists("out"):
                 os.mkdir("out")
 
-            file_path = os.path.join("out", self._report_name, ".tex")
+            file_path = os.path.join("out", self._report_name + ".tex")
             with open(file_path, "w", encoding="utf8") as f:
                 self._report_contents[0].texify(f)
                 self._report_contents[1].texify(f)
