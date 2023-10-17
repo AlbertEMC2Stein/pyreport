@@ -138,19 +138,35 @@ class Document(Environment):
 
     def texify(self, file, indent_level=0):
         indented_write(file, indent_level, "\\begin{document}")
-        indented_write(file, indent_level + 1, "\\maketitle\n" if self._maketitle else "", end="")
+        indented_write(
+            file, indent_level + 1, "\\maketitle\n" if self._maketitle else "", end=""
+        )
 
         # small hack because those two options interfere with each other
         toc_command = r"\tableofcontents"
         if self._titlepage == "notitlepage" and self._type == "report":
             toc_command = r"{\let\clearpage\relax\tableofcontents}"
 
-        indented_write(file, indent_level + 1, toc_command + "\n" if self._maketoc else "")
+        indented_write(
+            file, indent_level + 1, toc_command + "\n" if self._maketoc else ""
+        )
 
         for content in self._contents:
             content.texify(file, indent_level + 1)
 
         indented_write(file, indent_level, "\\end{document}")
+
+    def add_to_content(self, obj):
+        # pylint: disable=useless-super-delegation
+        super().add_to_content(obj)
+
+    def get_structure(self, indent_level=0):
+        # pylint: disable=useless-super-delegation
+        return super().get_structure(indent_level)
+
+    def __str__(self):
+        # pylint: disable=useless-super-delegation
+        return super().__str__()
 
 
 class Segment(Environment):
