@@ -16,6 +16,8 @@ if len(TAGS) > 0:
 
 
 def get_info():
+    """Get the package information."""
+
     return {
         "name": "pyreport",
         "version": LATEST_TAG,
