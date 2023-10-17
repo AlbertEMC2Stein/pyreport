@@ -9,7 +9,7 @@ import os
 from abc import ABC, abstractmethod
 from ._utils import restricted_get, indented_write
 
-__all__ = ["ReportKwargs", "Reporter", "ReportError", "Segment", "make_test_report"]
+__all__ = ["ReportKwargs", "Reporter", "ReportError", "Environment", "Segment", "LaTeXObject", "make_test_report"]
 
 ###########################################################################################
 
@@ -361,7 +361,7 @@ class Segment(Environment):
 ###########################################################################################
 
 
-class LatexObject(ABC):
+class LaTeXObject(ABC):
     """Abstract base class for all LaTeX objects."""
 
     def __init__(self, name):
