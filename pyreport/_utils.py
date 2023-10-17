@@ -53,3 +53,7 @@ def get_tags(root):
     items = listdir(tags_path)
     sorted_items = sorted(items, key=get_creation_time)
     return sorted_items
+
+
+def indented_write(file, n, text, end="\n"):
+    file.write("\t" * n + text + end)
