@@ -300,19 +300,27 @@ class PlainText(LatexObject):
 
 def make_test_report():
     report_kwargs = ReportKwargs(
-        author="Albert Stein", title="Test Report", 
-        maketoc=True, type="article", titlepage="notitlepage"
+        author="Albert Einstein",
+        title="Annalen der Physik",
+        maketoc=True,
+        type="report",
+        titlepage="notitlepage",
     )
     reporter = Reporter("test_report", report_kwargs)
 
-    section1 = Section("Section 1", "section1", asterisk=True)
-    section2 = Section("Section 2", "section2")
-    section3 = Section("Section 3", "section3")
+    chapter1        = Segment("The Answer", "chapter1", "chapter")
+    section1        = Segment("Intro", "section1", "section")
+    subsection11    = Segment("Sub Intro", "subsection11", "subsection")
+    section2        = Segment("Main", "section2", "section")
+    section3        = Segment("Conclusion", "section3", "section")
 
-    section3.add_to_content(PlainText("This is some plain text."))
+    subsection11.add_to_content(PlainText("This is some plain text."))
 
-    reporter.add_to_document(section1)
-    reporter.add_to_document(section2)
-    reporter.add_to_document(section3)
+    section1.add_to_content(subsection11)
+    chapter1.add_to_content(section1)
+    chapter1.add_to_content(section2)
+    chapter1.add_to_content(section3)
+    reporter.add_to_document(chapter1)
 
+    reporter.print_structure()
     reporter.report()
