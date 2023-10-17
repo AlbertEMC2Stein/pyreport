@@ -153,21 +153,47 @@ class Document(Environment):
         indented_write(file, indent_level, "\\end{document}")
 
 
-class Section(Environment):
-    def __init__(self, name, label, asterisk=False):
+class Segment(Environment):
+    def __init__(self, name, label, segment_type, asterisk=False):
         super().__init__(name)
         self._label = label
         self._asterisk = asterisk
+        self._segment_type = segment_type
+        self._level = _level_prefix_assignment[segment_type][0]
+        self._label_prefix = _level_prefix_assignment[segment_type][1]
 
     def texify(self, file, indent_level=0):
         asterisk = "*" if self._asterisk else ""
-        indented_write(file, indent_level, f"\\section{asterisk}{{{self._name}}}")
-        indented_write(file, indent_level, f"\\label{{sec::{self._label}}}")
+
+        create_command = f"\\{self._segment_type}{asterisk}{{{self._name}}}"
+        label_command = f"\\label{{{self._label_prefix}::{self._label}}}"
+
+        indented_write(file, indent_level, create_command)
+        indented_write(file, indent_level, label_command)
 
         for content in self._contents:
             content.texify(file, indent_level + 1)
 
-        indented_write(file, 0, "")
+        indented_write(
+            file, indent_level, f"% End of {self._segment_type} '{self._name}'\n"
+        )
+
+    def add_to_content(self, obj):
+        if isinstance(obj, Segment):
+            levelo, levels = obj._level, self._level
+            err_msg = f"Cannot add ChapterLike with lower level (self: {levels}, other: {levelo})."
+
+            if levelo < levels:
+                raise TypeError(err_msg)
+
+        return super().add_to_content(obj)
+
+    def get_structure(self, indent_level=0):
+        # pylint: disable=useless-super-delegation
+        return super().get_structure(indent_level)
+
+    def __str__(self):
+        return f"{self._segment_type.capitalize()}: {self._name}"
 
 
 ###########################################################################################
