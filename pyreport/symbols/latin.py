@@ -253,7 +253,7 @@ class FrakturSymbols(SymbolCollection):
     frakZ : Symbol
         The symbol for the fraktur capital letter Z.
     """
-    
+
     frakA = Symbol("frakA", r"\mathfrak{A}", "\u1D56C")
     frakB = Symbol("frakB", r"\mathfrak{B}", "\u1D56D")
     frakC = Symbol("frakC", r"\mathfrak{C}", "\u1D56E")
