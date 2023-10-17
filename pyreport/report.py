@@ -99,7 +99,7 @@ class Reporter:
 
         Parameters
         ----------
-        obj : Environment, LatexObject
+        obj : Environment, LaTeXObject
             Object to add to document.
         """
 
@@ -159,7 +159,7 @@ class Environment(ABC):
 
     @abstractmethod
     def __init__(self, name):
-        """Constructor for Environment.
+        """Constructor for Environment. Note that this class cannot not be instantiated.
         
         Parameters
         ----------
@@ -188,7 +188,7 @@ class Environment(ABC):
 
         Parameters
         ----------
-        obj : Environment, LatexObject
+        obj : Environment, LaTeXObject
             Object to add to environment.
         """
 
@@ -332,7 +332,7 @@ class Segment(Environment):
         
         Parameters
         ----------
-        obj : Environment, LatexObject
+        obj : Environment, LaTeXObject
             Object to add to segment.
         
         Raises
@@ -365,7 +365,7 @@ class LaTeXObject(ABC):
     """Abstract base class for all LaTeX objects."""
 
     def __init__(self, name):
-        """Constructor for LatexObject.
+        """Constructor for LaTeXObject. Note that this class cannot not be instantiated.
 
         Parameters
         ----------
@@ -388,7 +388,7 @@ class LaTeXObject(ABC):
         """
 
     def __str__(self):
-        return f"LatexObject: {self._name:<12}"
+        return f"LaTeXObject: {self._name:<12}"
 
 
 class Preamble(LaTeXObject):
