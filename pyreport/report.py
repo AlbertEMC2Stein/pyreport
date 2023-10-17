@@ -391,7 +391,7 @@ class LaTeXObject(ABC):
         return f"LatexObject: {self._name:<12}"
 
 
-class Preamble(LatexObject):
+class Preamble(LaTeXObject):
     """A class to hold the LaTeX preamble."""
 
     def __init__(self, name="preamble", **kwargs):
@@ -443,7 +443,7 @@ class Preamble(LatexObject):
         indented_write(file, 0, "")
 
 
-class PlainText(LatexObject):
+class PlainText(LaTeXObject):
     """A class to hold plain text."""
 
     def __init__(self, text, name="plaintext"):
