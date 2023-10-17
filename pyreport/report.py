@@ -96,6 +96,10 @@ class Reporter:
         except Exception as e:
             raise ReportError("Report could not be made.") from e
 
+    def print_structure(self):
+        print("Report structure:")
+        print(self._report_contents[1].get_structure())
+
 
 class ReportError(Exception):
     """Raised when report cannot be made."""
