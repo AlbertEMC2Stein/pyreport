@@ -1,7 +1,10 @@
 import os
-from ._utils import restricted_get
+from abc import ABC, abstractmethod
+from ._utils import restricted_get, indented_write
 
 __all__ = ["ReportKwargs", "ReportMaker", "ReportError", "make_test_report"]
+
+###########################################################################################
 
 
 class ReportKwargs:
@@ -47,78 +50,45 @@ class ReportKwargs:
         self.maketitle = restricted_get(kwargs, "maketitle", bool, True)
         self.maketoc = restricted_get(kwargs, "maketoc", bool, False)
 
-    def get_preamble(self):
-        preamble = ""
-        preamble += f"\\documentclass[{self.fontsize}pt, {self.columns}, \
-                    {self.titlepage}]{{{self.type}}}\n"
-        preamble += "\\usepackage[utf8]{inputenc}\n"
-        preamble += "\\usepackage{amsmath}\n"
-        preamble += "\\usepackage{amssymb}\n"
-        preamble += "\\usepackage{graphicx}\n"
-        preamble += "\\usepackage{hyperref}\n"
+    def to_dict(self):
+        return {
+            "type": self.type,
+            "fontsize": self.fontsize,
+            "columns": self.columns,
+            "titlepage": self.titlepage,
+            "packages": self.packages,
+            "author": self.author,
+            "title": self.title,
+            "date": self.date,
+            "maketitle": self.maketitle,
+            "maketoc": self.maketoc,
+        }
+    
 
-        for package in self.packages:
-            preamble += f"\\usepackage{{{package}}}\n"
-
-        preamble += f"\\author{{{self.author}}}\n"
-        preamble += f"\\title{{{self.title}}}\n"
-        preamble += f"\\date{{{self.date}}}\n"
-
-        return preamble
-
-
-class ReportMaker:
+class Reporter:
     def __init__(self, report_name, report_kwargs):
-        self.report_name = report_name
-        self.report_kwargs = report_kwargs
-        self.report_contents = ""
+        self.__report_name = report_name
+        self.__report_contents = [
+            Preamble(**report_kwargs.to_dict()), 
+            Document(**report_kwargs.to_dict())
+        ]
 
-    def add_section(self, section_name):
-        self.report_contents += f"\\section{{{section_name}}}\n"
+    def add_to_document(self, obj):
+        self.__report_contents[1].add_to_content(obj)
 
-    def add_subsection(self, subsection_name):
-        self.report_contents += f"\\subsection{{{subsection_name}}}\n"
-
-    def add_subsubsection(self, subsubsection_name):
-        self.report_contents += f"\\subsubsection{{{subsubsection_name}}}\n"
-
-    def add_paragraph(self, paragraph_name, asterisk=False):
-        if asterisk:
-            self.report_contents += f"\\paragraph*{{{paragraph_name}}}\n"
-        else:
-            self.report_contents += f"\\paragraph{{{paragraph_name}}}\n"
-
-    def add_equation(self, equation, label=None):
-        if label:
-            self.report_contents += f"\\begin{{equation}}\n\\label{{eqn:{label}}} \
-                                    \n{equation}\n\\end{{equation}}\n"
-        else:
-            self.report_contents += (
-                f"\\begin{{equation}}\n\n{equation}\n\\end{{equation}}\n"
-            )
-
-    def make(self):
+    def report(self):
         try:
             print("Writing report...")
             if not os.path.exists("out"):
                 os.mkdir("out")
 
-            with open("out/" + self.report_name + ".tex", "w", encoding="utf8") as f:
-                f.write(self.report_kwargs.get_preamble())
-                f.write("\\begin{document}\n")
-
-                if self.report_kwargs.maketitle:
-                    f.write("\\maketitle\n")
-
-                if self.report_kwargs.maketoc:
-                    f.write("\\tableofcontents\n")
-
-                f.write(self.report_contents)
-                f.write("\\end{document}\n")
+            with open("out/" + self.__report_name + ".tex", "w", encoding="utf8") as f:
+                self.__report_contents[0].texify(f)
+                self.__report_contents[1].texify(f)
 
             print("Done!\nCompiling report...")
 
-            os.system(f"latexmk -c -quiet -pdf -outdir=out out/{self.report_name}.tex")
+            os.system(f"latexmk -c -quiet -pdf -outdir=out out/{self.__report_name}.tex")
 
             print("Done!")
         except Exception as e:
@@ -129,17 +99,153 @@ class ReportError(Exception):
     """Raised when report cannot be made."""
 
 
+###########################################################################################
+
+
+class Environment(ABC):
+    @abstractmethod
+    def __init__(self, name):
+        self.name = name
+        self.contents = []
+
+    @abstractmethod
+    def texify(self, file, indent_level=0):
+        pass
+
+    def add_to_content(self, obj):
+        assert not isinstance(obj, Document), "Cannot add Document to Environment."
+        self.contents.append(obj)
+
+    def print_structure(self, indent_level=0):
+        result = f"{self.name}\n"
+        for content in self.contents:
+            if isinstance(content, Environment):
+                result += indent_level * "   " + f"|-- {content.print_structure(indent_level + 1)}"
+
+    def __str__(self):
+        return f"Environment: {self.name:<12}"
+    
+
+class Document(Environment):
+    def __init__(self, name="document", **kwargs):
+        super().__init__(name)
+        self.type = kwargs["type"]
+        self.titlepage = kwargs["titlepage"]
+        self.maketitle = kwargs["maketitle"]
+        self.maketoc = kwargs["maketoc"]
+
+    def texify(self, file, indent_level=0):
+        indented_write(file, indent_level, "\\begin{document}")
+        indented_write(file, indent_level + 1, "\\maketitle\n" if self.maketitle else "", end="")
+
+        # small hack because those two options interfere with each other
+        toc_command = r"\tableofcontents"
+        if self.titlepage == "notitlepage" and self.type == "report":
+            toc_command = r"{\let\clearpage\relax\tableofcontents}" 
+
+        indented_write(file, indent_level + 1, toc_command + "\n" if self.maketoc else "")
+        
+        for content in self.contents:
+            content.texify(file, indent_level + 1)
+
+        indented_write(file, indent_level, "\\end{document}")
+
+
+class Section(Environment):
+    def __init__(self, name, label, asterisk=False):
+        super().__init__(name)
+        self.label = label
+        self.asterisk = asterisk
+
+    def texify(self, file, indent_level=0): 
+        asterisk = "*" if self.asterisk else ""
+        indented_write(file, indent_level, f"\\section{asterisk}{{{self.name}}}")
+        indented_write(file, indent_level, f"\\label{{sec::{self.label}}}")
+
+        for content in self.contents:
+            content.texify(file, indent_level + 1)
+
+        indented_write(file, 0, "")
+
+
+###########################################################################################
+
+
+class LatexObject(ABC):
+    def __init__(self, name):
+        self.name = name
+
+    @abstractmethod
+    def texify(self, file, indent_level=0):
+        pass
+
+    def __str__(self):
+        return f"LatexObject: {self.name:<12}"
+    
+
+class Preamble(LatexObject):
+    def __init__(self, name="preamble", **kwargs):
+        super().__init__(name)
+        self.type = kwargs["type"]
+        self.fontsize = kwargs["fontsize"]
+        self.columns = kwargs["columns"]
+        self.titlepage = kwargs["titlepage"]
+        self.packages = kwargs["packages"]
+        self.author = kwargs["author"]  
+        self.title = kwargs["title"]
+        self.date = kwargs["date"]
+
+    def texify(self, file, indent_level=0):
+        head = "\\documentclass[%dpt, %s, %s]{%s}" % (
+            self.fontsize,
+            self.columns,
+            self.titlepage,
+            self.type,
+        )
+
+        indented_write(file, indent_level, head)
+        indented_write(file, indent_level, "\\usepackage[utf8]{inputenc}")
+        indented_write(file, indent_level, "\\usepackage{amsmath}")
+        indented_write(file, indent_level, "\\usepackage{amssymb}")
+        indented_write(file, indent_level, "\\usepackage{graphicx}")
+        indented_write(file, indent_level, "\\usepackage{hyperref}")
+
+        for package in self.packages:
+            indented_write(file, indent_level, f"\\usepackage{{{package}}}")
+
+        indented_write(file, indent_level, f"\n\\author{{{self.author}}}")
+        indented_write(file, indent_level, f"\\title{{{self.title}}}")
+        indented_write(file, indent_level, f"\\date{{{self.date}}}\n")
+
+
+class PlainText(LatexObject):
+    def __init__(self, text):
+        super().__init__("plaintext")
+        self.text = text
+
+    def texify(self, file, indent_level=0):
+        indented_write(file, indent_level, self.text)
+
+
+###########################################################################################
+
+
 def make_test_report():
     report_kwargs = ReportKwargs(
-        author="Albert Stein", title="Test Report", maketoc=True
+        author="Albert Stein", title="Test Report", maketoc=True, type="article"
     )
-    report_maker = ReportMaker("test_report", report_kwargs)
+    reporter = Reporter("test_report", report_kwargs)
 
-    report_maker.add_section("Section")
-    report_maker.add_subsection("Subsection")
-    report_maker.add_subsubsection("Subsubsection")
-    report_maker.add_paragraph("Paragraph")
-    report_maker.add_paragraph("Paragraph with asterisk", asterisk=True)
-    report_maker.add_equation("E = mc^2", label="emc2")
+    doc = Document(**report_kwargs.to_dict())
 
-    report_maker.make()
+    section1 = Section("Section 1", "section1", asterisk=True)
+    section2 = Section("Section 2", "section2")
+    section3 = Section("Section 3", "section3")
+
+    section3.add_to_content(PlainText("This is some plain text."))
+
+    reporter.add_to_document(section1)
+    reporter.add_to_document(section2)
+    reporter.add_to_document(section3)
+
+    reporter.report()
