@@ -112,8 +112,4 @@ class FrakturSymbols(SymbolCollection):
     @classmethod
     def list_symbols(cls):
         super(FrakturSymbols, cls).list_symbols()
-
-
-for collection in [BlackBoardSymbols, CalligraphicSymbols, FrakturSymbols]:
-    for symbol in collection.get_symbols().values():
-        print(symbol)
+        
