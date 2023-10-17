@@ -44,8 +44,8 @@ class ReportKwargs:
             kwargs, "titlepage", ["notitlepage", "titlepage"], "notitlepage"
         )
         self.packages = restricted_get(kwargs, "packages", list, [])
-        self.author = restricted_get(kwargs, "author", str, None)
-        self.title = restricted_get(kwargs, "title", str, None)
+        self.author = restricted_get(kwargs, "author", str, "")
+        self.title = restricted_get(kwargs, "title", str, "")
         self.date = restricted_get(kwargs, "date", str, "\\today")
         self.maketitle = restricted_get(kwargs, "maketitle", bool, True)
         self.maketoc = restricted_get(kwargs, "maketoc", bool, False)
