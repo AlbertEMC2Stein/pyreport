@@ -14,39 +14,33 @@ __all__ = ["ReportKwargs", "Reporter", "ReportError", "Segment", "make_test_repo
 ###########################################################################################
 
 class ReportKwargs:
-    """A class to hold the arguments for the report.
-
-    Methods
-    -------
-    to_dict:
-        Returns a dictionary with the arguments.
-    """
+    """A class to hold the arguments for the Reporter class."""
 
     def __init__(self, **kwargs):
-        """A class to hold the arguments for the report.
+        """Constructor for ReportKwargs.
 
         Parameters
         ----------
         type: {"article", "report"}, optional
-            Type of report, by default "report"
+            Type of report, by default "report".
         fontsize: {10, 11, 12}, optional
-            Font size, by default 12
+            Font size, by default 12.
         columns: {"onecolumn", "twocolumn"}, optional
-            Number of columns, by default "onecolumn"
+            Number of columns, by default "onecolumn".
         titlepage: {"notitlepage", "titlepage"}, optional
-            Title page, by default "notitlepage"
+            Title page, by default "notitlepage".
         packages: list, optional
-            List of packages to import, by default []
+            List of packages to import, by default [].
         author: str, optional
-            Author of report, by default ""
+            Author of report, by default "".
         title: str, optional
-            Title of report, by default ""
+            Title of report, by default "".
         date: str, optional
-            Date of report, by default "\\today"
+            Date of report, by default "\\today".
         maketitle: bool, optional
             Make title, by default True.
         maketoc: bool, optional
-            Make table of contents, by default False
+            Make table of contents, by default False.
         """
 
         self.type = restricted_get(kwargs, "type", ["article", "report"], "report")
@@ -81,7 +75,19 @@ class ReportKwargs:
 
 
 class Reporter:
+    """A class to create LaTeX reports."""
+
     def __init__(self, report_name, report_kwargs):
+        """Constructor for Reporter.
+        
+        Parameters
+        ----------
+        report_name : str
+            Name of report.
+        report_kwargs : ReportKwargs
+            Arguments for report.
+        """
+
         self._report_name = report_name
         self._report_contents = [
             Preamble(**report_kwargs.to_dict()),
@@ -89,9 +95,25 @@ class Reporter:
         ]
 
     def add_to_document(self, obj):
+        """Adds an object to the document.
+
+        Parameters
+        ----------
+        obj : Environment, LatexObject
+            Object to add to document.
+        """
+
         self._report_contents[1].add_to_content(obj)
 
     def report(self):
+        """Creates and compiles the report.
+
+        Raises
+        ------
+        ReportError
+            Raised when report cannot be made.
+        """
+
         try:
             print("Writing report...")
             if not os.path.exists("out"):
@@ -112,6 +134,7 @@ class Reporter:
             raise ReportError("Report could not be made.") from e
 
     def print_structure(self):
+        """Prints the structure of the report."""
         print("Report structure:")
         print(self._report_contents[1].get_structure())
 
@@ -132,24 +155,61 @@ _level_prefix_assignment = {
 
 
 class Environment(ABC):
+    """Abstract base class for all environments."""
+
     @abstractmethod
     def __init__(self, name):
+        """Constructor for Environment.
+        
+        Parameters
+        ----------
+        name : str
+            Name of environment.
+        """
+
         self._name = name
         self._contents = []
 
     @abstractmethod
     def texify(self, file, indent_level=0):
-        pass
+        """Writes the environment to a .tex-file.
+        
+        Parameters
+        ----------
+        file : file
+            File to write to.
+        indent_level : int, optional
+            Indentation level, by default 0.
+        """
 
     @abstractmethod
     def add_to_content(self, obj):
+        """Adds an object to the environment.
+
+        Parameters
+        ----------
+        obj : Environment, LatexObject
+            Object to add to environment.
+        """
+
         if isinstance(obj, Document):
             raise TypeError("Cannot add Document to Environment.")
+
+        if isinstance(obj, Preamble):
+            raise TypeError("Cannot add Preamble to Environment.")
 
         self._contents.append(obj)
 
     @abstractmethod
     def get_structure(self, indent_level=0):
+        """Returns the structure of the environment as a string.
+
+        Parameters
+        ----------
+        indent_level : int, optional
+            Indentation level, by default 0.
+        """
+
         result = f"{self}\n"
         for i, content in enumerate(self._contents):
             glyph = "└──" if i == len(self._contents) - 1 else "├──"
@@ -168,7 +228,19 @@ class Environment(ABC):
 
 
 class Document(Environment):
+    """A class to hold the LaTeX document environment."""
+
     def __init__(self, name="document", **kwargs):
+        """Constructor for Document.
+
+        Parameters
+        ----------
+        name : str, optional
+            Name of document, by default "document".
+        **kwargs : dict
+            Arguments for document.
+        """
+
         super().__init__(name)
         self._type = kwargs["type"]
         self._titlepage = kwargs["titlepage"]
@@ -214,7 +286,23 @@ class Document(Environment):
 
 
 class Segment(Environment):
-    def __init__(self, name, label, segment_type, asterisk=False):
+    """A class to hold the LaTeX chapter, section, subsection, etc. environments."""
+
+    def __init__(self, name, segment_type, label="", asterisk=False):
+        """Constructor for Segment.
+
+        Parameters
+        ----------
+        name : str
+            Name of segment.
+        segment_type : {"chapter", "section", "subsection", "subsubsection", "paragraph"}
+            Type of segment.
+        label : str, optional
+            Label of segment, by default "".
+        asterisk : bool, optional
+            Whether to use asterisk, by default False.
+        """
+
         super().__init__(name)
         self._label = label
         self._asterisk = asterisk
@@ -226,10 +314,11 @@ class Segment(Environment):
         asterisk = "*" if self._asterisk else ""
 
         create_command = f"\\{self._segment_type}{asterisk}{{{self._name}}}"
-        label_command = f"\\label{{{self._label_prefix}::{self._label}}}"
-
         indented_write(file, indent_level, create_command)
-        indented_write(file, indent_level, label_command)
+
+        if self._label:
+            label_command = f"\\label{{{self._label_prefix}::{self._label}}}"
+            indented_write(file, indent_level, label_command)
 
         for content in self._contents:
             content.texify(file, indent_level + 1)
@@ -239,6 +328,19 @@ class Segment(Environment):
         )
 
     def add_to_content(self, obj):
+        """Adds an object to the segment.
+        
+        Parameters
+        ----------
+        obj : Environment, LatexObject
+            Object to add to segment.
+        
+        Raises
+        ------
+        TypeError
+            Raised when Segment of lower level is tried to be added.
+        """
+
         if isinstance(obj, Segment):
             levelo, levels = obj._level, self._level
             err_msg = f"Cannot add ChapterLike with lower level (self: {levels}, other: {levelo})."
@@ -260,19 +362,49 @@ class Segment(Environment):
 
 
 class LatexObject(ABC):
+    """Abstract base class for all LaTeX objects."""
+
     def __init__(self, name):
+        """Constructor for LatexObject.
+
+        Parameters
+        ----------
+        name : str
+            Name of object.
+        """
+
         self._name = name
 
     @abstractmethod
     def texify(self, file, indent_level=0):
-        pass
+        """Writes the object to a .tex-file.
+
+        Parameters
+        ----------
+        file : file
+            File to write to.
+        indent_level : int, optional
+            Indentation level, by default 0.
+        """
 
     def __str__(self):
         return f"LatexObject: {self._name:<12}"
 
 
 class Preamble(LatexObject):
+    """A class to hold the LaTeX preamble."""
+
     def __init__(self, name="preamble", **kwargs):
+        """Constructor for Preamble.
+
+        Parameters
+        ----------
+        name : str, optional
+            Name of preamble, by default "preamble".
+        **kwargs : dict
+            Arguments for preamble.
+        """
+
         super().__init__(name)
         self._type = kwargs["type"]
         self._fontsize = kwargs["fontsize"]
@@ -302,7 +434,6 @@ class Preamble(LatexObject):
         for package in self._packages:
             indented_write(file, indent_level, f"\\usepackage{{{package}}}")
 
-
         if (self._author or self._title or self._date) and self._maketitle:
             indented_write(file, 0, "")
             indented_write(file, indent_level, f"\\title{{{self._title}}}")
@@ -313,7 +444,19 @@ class Preamble(LatexObject):
 
 
 class PlainText(LatexObject):
-    def __init__(self, text):
+    """A class to hold plain text."""
+
+    def __init__(self, text, name="plaintext"):
+        """Constructor for PlainText.
+
+        Parameters
+        ----------
+        text : str
+            Text to hold.
+        name : str, optional
+            Name of object, by default "plaintext".
+        """
+
         super().__init__("plaintext")
         self._text = text
 
@@ -325,6 +468,8 @@ class PlainText(LatexObject):
 
 
 def make_test_report():
+    """Creates a test report."""
+
     report_kwargs = ReportKwargs(
         author="Albert Einstein",
         title="Annalen der Physik",
