@@ -157,14 +157,19 @@ class Document(Environment):
         super().__init__(name)
         self._type = kwargs["type"]
         self._titlepage = kwargs["titlepage"]
+        self._title = kwargs["title"]
+        self._author = kwargs["author"]
+        self._date = kwargs["date"]
         self._maketitle = kwargs["maketitle"]
         self._maketoc = kwargs["maketoc"]
 
     def texify(self, file, indent_level=0):
         indented_write(file, indent_level, "\\begin{document}")
-        indented_write(
-            file, indent_level + 1, "\\maketitle\n" if self._maketitle else "", end=""
-        )
+
+        if (self._title or self._author or self._date) and self._maketitle:
+            indented_write(
+                file, indent_level + 1, "\\maketitle\n" if self._maketitle else "", end=""
+            )
 
         # small hack because those two options interfere with each other
         toc_command = r"\tableofcontents"
@@ -262,6 +267,7 @@ class Preamble(LatexObject):
         self._author = kwargs["author"]
         self._title = kwargs["title"]
         self._date = kwargs["date"]
+        self._maketitle = kwargs["maketitle"]
 
     def texify(self, file, indent_level=0):
         head = "\\documentclass[%dpt, %s, %s]{%s}" % (
@@ -281,9 +287,14 @@ class Preamble(LatexObject):
         for package in self._packages:
             indented_write(file, indent_level, f"\\usepackage{{{package}}}")
 
-        indented_write(file, indent_level, f"\n\\author{{{self._author}}}")
-        indented_write(file, indent_level, f"\\title{{{self._title}}}")
-        indented_write(file, indent_level, f"\\date{{{self._date}}}\n")
+
+        if (self._author or self._title or self._date) and self._maketitle:
+            indented_write(file, 0, "")
+            indented_write(file, indent_level, f"\\title{{{self._title}}}")
+            indented_write(file, indent_level, f"\\author{{{self._author}}}")
+            indented_write(file, indent_level, f"\\date{{{self._date}}}")
+
+        indented_write(file, 0, "")
 
 
 class PlainText(LatexObject):
