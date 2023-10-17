@@ -1,6 +1,5 @@
 from pyreport.symbols import SymbolCollection, Symbol
 
-
 __all__ = ['Hebrews']
 
 
@@ -17,6 +16,3 @@ class Hebrews(SymbolCollection):
     @classmethod
     def list_symbols(cls):
         super(Hebrews, cls).list_symbols()
-
-for symbol in Hebrews.get_symbols().values():
-    print(symbol)
