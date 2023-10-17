@@ -70,7 +70,7 @@ class Reporter:
         self._report_name = report_name
         self._report_contents = [
             Preamble(**report_kwargs.to_dict()),
-            Document(**report_kwargs.to_dict())
+            Document(**report_kwargs.to_dict()),
         ]
 
     def add_to_document(self, obj):
