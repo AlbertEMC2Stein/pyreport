@@ -1,9 +1,69 @@
+"""A module providing the Latin alphabet as symbols in various styles.""" 
+
 from pyreport.symbols import Symbol, SymbolCollection
 
 __all__ = ["BlackBoardSymbols", "CalligraphicSymbols", "FrakturSymbols"]
 
 
 class BlackBoardSymbols(SymbolCollection):
+    """A collection containing the Latin alphabet as symbols in blackboard style.
+
+    Attributes
+    ----------
+    AA : Symbol
+        The symbol for the double-struck capital letter A.
+    BB : Symbol
+        The symbol for the double-struck capital letter B.
+    CC : Symbol
+        The symbol for the double-struck capital letter C.
+    DD : Symbol
+        The symbol for the double-struck capital letter D.
+    EE : Symbol
+        The symbol for the double-struck capital letter E.
+    FF : Symbol
+        The symbol for the double-struck capital letter F.
+    GG : Symbol
+        The symbol for the double-struck capital letter G.
+    HH : Symbol
+        The symbol for the double-struck capital letter H.
+    II : Symbol
+        The symbol for the double-struck capital letter I.
+    JJ : Symbol
+        The symbol for the double-struck capital letter J.
+    KK : Symbol
+        The symbol for the double-struck capital letter K.
+    LL : Symbol
+        The symbol for the double-struck capital letter L.
+    MM : Symbol
+        The symbol for the double-struck capital letter M.
+    NN : Symbol
+        The symbol for the double-struck capital letter N.
+    OO : Symbol
+        The symbol for the double-struck capital letter O.
+    PP : Symbol
+        The symbol for the double-struck capital letter P.
+    QQ : Symbol
+        The symbol for the double-struck capital letter Q.
+    RR : Symbol
+        The symbol for the double-struck capital letter R.
+    SS : Symbol
+        The symbol for the double-struck capital letter S.
+    TT : Symbol
+        The symbol for the double-struck capital letter T.
+    UU : Symbol
+        The symbol for the double-struck capital letter U.
+    VV : Symbol
+        The symbol for the double-struck capital letter V.
+    WW : Symbol
+        The symbol for the double-struck capital letter W.
+    XX : Symbol
+        The symbol for the double-struck capital letter X.
+    YY : Symbol
+        The symbol for the double-struck capital letter Y.
+    ZZ : Symbol
+        The symbol for the double-struck capital letter Z.
+    """
+
     AA = Symbol("AA", r"\mathbb{A}", "\u1D538")
     BB = Symbol("BB", r"\mathbb{B}", "\u1D539")
     CC = Symbol("CC", r"\mathbb{C}", "\u2102")
@@ -41,6 +101,64 @@ class BlackBoardSymbols(SymbolCollection):
 
 
 class CalligraphicSymbols(SymbolCollection):
+    """A collection containing the Latin alphabet as symbols in calligraphic style.
+
+    Attributes
+    ----------
+    calA : Symbol
+        The symbol for the calligraphic capital letter A.
+    calB : Symbol
+        The symbol for the calligraphic capital letter B.
+    calC : Symbol
+        The symbol for the calligraphic capital letter C.
+    calD : Symbol
+        The symbol for the calligraphic capital letter D.
+    calE : Symbol
+        The symbol for the calligraphic capital letter E.
+    calF : Symbol
+        The symbol for the calligraphic capital letter F.
+    calG : Symbol
+        The symbol for the calligraphic capital letter G.
+    calH : Symbol
+        The symbol for the calligraphic capital letter H.
+    calI : Symbol
+        The symbol for the calligraphic capital letter I.
+    calJ : Symbol
+        The symbol for the calligraphic capital letter J.
+    calK : Symbol
+        The symbol for the calligraphic capital letter K.
+    calL : Symbol
+        The symbol for the calligraphic capital letter L.
+    calM : Symbol
+        The symbol for the calligraphic capital letter M.
+    calN : Symbol
+        The symbol for the calligraphic capital letter N.
+    calO : Symbol
+        The symbol for the calligraphic capital letter O.
+    calP : Symbol
+        The symbol for the calligraphic capital letter P.
+    calQ : Symbol
+        The symbol for the calligraphic capital letter Q.
+    calR : Symbol
+        The symbol for the calligraphic capital letter R.
+    calS : Symbol
+        The symbol for the calligraphic capital letter S.
+    calT : Symbol
+        The symbol for the calligraphic capital letter T.
+    calU : Symbol
+        The symbol for the calligraphic capital letter U.
+    calV : Symbol
+        The symbol for the calligraphic capital letter V.
+    calW : Symbol
+        The symbol for the calligraphic capital letter W.
+    calX : Symbol
+        The symbol for the calligraphic capital letter X.
+    calY : Symbol
+        The symbol for the calligraphic capital letter Y.
+    calZ : Symbol
+        The symbol for the calligraphic capital letter Z.
+    """
+
     calA = Symbol("calA", r"\mathcal{A}", "\u1D49C")
     calB = Symbol("calB", r"\mathcal{B}", "\u212C")
     calC = Symbol("calC", r"\mathcal{C}", "\u1D49E")
@@ -78,6 +196,64 @@ class CalligraphicSymbols(SymbolCollection):
 
 
 class FrakturSymbols(SymbolCollection):
+    """A collection containing the Latin alphabet as symbols in fraktur style.
+
+    Attributes
+    ----------
+    frakA : Symbol
+        The symbol for the fraktur capital letter A.
+    frakB : Symbol
+        The symbol for the fraktur capital letter B.
+    frakC : Symbol
+        The symbol for the fraktur capital letter C.
+    frakD : Symbol
+        The symbol for the fraktur capital letter D.
+    frakE : Symbol
+        The symbol for the fraktur capital letter E.
+    frakF : Symbol
+        The symbol for the fraktur capital letter F.
+    frakG : Symbol
+        The symbol for the fraktur capital letter G.
+    frakH : Symbol
+        The symbol for the fraktur capital letter H.
+    frakI : Symbol
+        The symbol for the fraktur capital letter I.
+    frakJ : Symbol
+        The symbol for the fraktur capital letter J.
+    frakK : Symbol
+        The symbol for the fraktur capital letter K.
+    frakL : Symbol
+        The symbol for the fraktur capital letter L.
+    frakM : Symbol
+        The symbol for the fraktur capital letter M.
+    frakN : Symbol
+        The symbol for the fraktur capital letter N.
+    frakO : Symbol
+        The symbol for the fraktur capital letter O.
+    frakP : Symbol
+        The symbol for the fraktur capital letter P.
+    frakQ : Symbol
+        The symbol for the fraktur capital letter Q.
+    frakR : Symbol
+        The symbol for the fraktur capital letter R.
+    frakS : Symbol
+        The symbol for the fraktur capital letter S.
+    frakT : Symbol
+        The symbol for the fraktur capital letter T.
+    frakU : Symbol
+        The symbol for the fraktur capital letter U.
+    frakV : Symbol
+        The symbol for the fraktur capital letter V.
+    frakW : Symbol
+        The symbol for the fraktur capital letter W.
+    frakX : Symbol
+        The symbol for the fraktur capital letter X.
+    frakY : Symbol
+        The symbol for the fraktur capital letter Y.
+    frakZ : Symbol
+        The symbol for the fraktur capital letter Z.
+    """
+    
     frakA = Symbol("frakA", r"\mathfrak{A}", "\u1D56C")
     frakB = Symbol("frakB", r"\mathfrak{B}", "\u1D56D")
     frakC = Symbol("frakC", r"\mathfrak{C}", "\u1D56E")

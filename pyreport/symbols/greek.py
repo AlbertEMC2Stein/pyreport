@@ -1,3 +1,5 @@
+"""A module providing the Greek alphabet as symbols."""
+
 from pyreport.symbols import Symbol, SymbolCollection
 from pyreport._utils import Switch
 
@@ -27,6 +29,90 @@ DEFAULT_VARPHI = Switch("DEFAULT_VARPHI", True, False)
 
 
 class Greeks(SymbolCollection):
+    """A collection containing the Greek alphabet as symbols.
+
+    Attributes
+    ----------
+    alpha : Symbol
+        The symbol for the small greek letter alpha.
+    beta : Symbol
+        The symbol for the small greek letter beta.
+    gamma : Symbol
+        The symbol for the small greek letter gamma.
+    delta : Symbol
+        The symbol for the small greek letter delta.
+    epsilon : Symbol
+        The symbol for the small greek letter epsilon (depends on DEFAULT_VAREPSILON).
+    varepsilon : Symbol
+        The symbol for the small greek letter varepsilon (depends on DEFAULT_VAREPSILON).
+    zeta : Symbol
+        The symbol for the small greek letter zeta.
+    eta : Symbol
+        The symbol for the small greek letter eta.
+    theta : Symbol
+        The symbol for the small greek letter theta (depends on DEFAULT_VARTHETA).
+    vartheta : Symbol
+        The symbol for the small greek letter vartheta (depends on DEFAULT_VARTHETA).
+    iota : Symbol
+        The symbol for the small greek letter iota.
+    kappa : Symbol
+        The symbol for the small greek letter kappa.
+    lambda_ : Symbol
+        The symbol for the small greek letter lambda.
+    mu : Symbol
+        The symbol for the small greek letter mu.
+    nu : Symbol
+        The symbol for the small greek letter nu.
+    xi : Symbol
+        The symbol for the small greek letter xi.
+    pi : Symbol
+        The symbol for the small greek letter pi (depends on DEFAULT_VARPI).
+    varpi : Symbol
+        The symbol for the small greek letter varpi (depends on DEFAULT_VARPI).
+    rho : Symbol
+        The symbol for the small greek letter rho (depends on DEFAULT_VARRHO).
+    varrho : Symbol
+        The symbol for the small greek letter varrho (depends on DEFAULT_VARRHO).
+    sigma : Symbol
+        The symbol for the small greek letter sigma.
+    tau : Symbol
+        The symbol for the small greek letter tau.
+    upsilon : Symbol
+        The symbol for the small greek letter upsilon.
+    phi : Symbol
+        The symbol for the small greek letter phi (depends on DEFAULT_VARPHI).
+    varphi : Symbol
+        The symbol for the small greek letter varphi (depends on DEFAULT_VARPHI).
+    chi : Symbol
+        The symbol for the small greek letter chi.
+    psi : Symbol
+        The symbol for the small greek letter psi.
+    omega : Symbol
+        The symbol for the small greek letter omega.
+    Gamma : Symbol
+        The symbol for the capital greek letter Gamma.
+    Delta : Symbol
+        The symbol for the capital greek letter Delta.
+    Theta : Symbol
+        The symbol for the capital greek letter Theta.
+    Lambda : Symbol
+        The symbol for the capital greek letter Lambda.
+    Xi : Symbol
+        The symbol for the capital greek letter Xi.
+    Pi : Symbol
+        The symbol for the capital greek letter Pi.
+    Sigma : Symbol
+        The symbol for the capital greek letter Sigma.
+    Upsilon : Symbol
+        The symbol for the capital greek letter Upsilon.
+    Phi : Symbol
+        The symbol for the capital greek letter Phi.
+    Psi : Symbol
+        The symbol for the capital greek letter Psi.
+    Omega : Symbol
+        The symbol for the capital greek letter Omega.
+    """
+
     ##################### SMALL LETTERS #####################
     alpha = Symbol("alpha", r"\alpha", "\u03B1")
     beta = Symbol("beta", r"\beta", "\u03B2")
