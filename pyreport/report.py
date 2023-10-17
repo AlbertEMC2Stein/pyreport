@@ -114,18 +114,30 @@ class Environment(ABC):
     def texify(self, file, indent_level=0):
         pass
 
+    @abstractmethod
     def add_to_content(self, obj):
-        assert not isinstance(obj, Document), "Cannot add Document to Environment."
+        if isinstance(obj, Document):
+            raise TypeError("Cannot add Document to Environment.")
+
         self._contents.append(obj)
 
-    def print_structure(self, indent_level=0):
-        result = f"{self._name}\n"
-        for content in self._contents:
-            if isinstance(content, Environment):
-                result += indent_level * "   " + f"|-- {content.print_structure(indent_level + 1)}"
+    @abstractmethod
+    def get_structure(self, indent_level=0):
+        result = f"{self}\n"
+        for i, content in enumerate(self._contents):
+            glyph = "└──" if i == len(self._contents) - 1 else "├──"
 
+            if isinstance(content, Environment):
+                result += (
+                    indent_level * "│    "
+                    + f"{glyph} {content.get_structure(indent_level + 1)}"
+                )
+
+        return result
+
+    @abstractmethod
     def __str__(self):
-        return f"Environment: {self._name:<12}"
+        return f"{self.__class__.__name__}: {self._name:<12}"
 
 
 class Document(Environment):
