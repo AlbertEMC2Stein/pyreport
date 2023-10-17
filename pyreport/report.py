@@ -67,14 +67,14 @@ class ReportKwargs:
 
 class Reporter:
     def __init__(self, report_name, report_kwargs):
-        self.__report_name = report_name
-        self.__report_contents = [
+        self._report_name = report_name
+        self._report_contents = [
             Preamble(**report_kwargs.to_dict()),
             Document(**report_kwargs.to_dict())
         ]
 
     def add_to_document(self, obj):
-        self.__report_contents[1].add_to_content(obj)
+        self._report_contents[1].add_to_content(obj)
 
     def report(self):
         try:
@@ -82,13 +82,15 @@ class Reporter:
             if not os.path.exists("out"):
                 os.mkdir("out")
 
-            with open("out/" + self.__report_name + ".tex", "w", encoding="utf8") as f:
-                self.__report_contents[0].texify(f)
-                self.__report_contents[1].texify(f)
+            file_path = os.path.join("out", self._report_name, ".tex")
+            with open(file_path, "w", encoding="utf8") as f:
+                self._report_contents[0].texify(f)
+                self._report_contents[1].texify(f)
 
             print("Done!\nCompiling report...")
 
-            os.system(f"latexmk -c -quiet -pdf -outdir=out out/{self.__report_name}.tex")
+            os.system(f"latexmk -cd -pdf -quiet {file_path}")
+            os.system(f"latexmk -cd -c {file_path}")
 
             print("Done!")
         except Exception as e:
@@ -232,7 +234,8 @@ class PlainText(LatexObject):
 
 def make_test_report():
     report_kwargs = ReportKwargs(
-        author="Albert Stein", title="Test Report", maketoc=True, type="article"
+        author="Albert Stein", title="Test Report", 
+        maketoc=True, type="article", titlepage="notitlepage"
     )
     reporter = Reporter("test_report", report_kwargs)
 
