@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>pyreport.symbols.greek API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="A module providing the Greek alphabet as symbols." />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css" crossorigin>
@@ -24,6 +24,7 @@
 <h1 class="title">Module <code>pyreport.symbols.greek</code></h1>
 </header>
 <section id="section-intro">
+<p>A module providing the Greek alphabet as symbols.</p>
 </section>
 <section>
 </section>
@@ -32,29 +33,292 @@
 <dl>
 <dt id="pyreport.symbols.greek.DEFAULT_VAREPSILON"><code class="name">var <span class="ident">DEFAULT_VAREPSILON</span></code></dt>
 <dd>
-<div class="desc"><p>Switch out the default LaTeX command for epsilon with the alternate one (varepsilon).</p></div>
+<div class="desc"><p>Switch out the default LaTeX command for epsilon with the alternate one (varepsilon). Default is True.</p></div>
 </dd>
 <dt id="pyreport.symbols.greek.DEFAULT_VARPHI"><code class="name">var <span class="ident">DEFAULT_VARPHI</span></code></dt>
 <dd>
-<div class="desc"><p>Switch out the default LaTeX command for phi with the alternate one (varphi).</p></div>
+<div class="desc"><p>Switch out the default LaTeX command for phi with the alternate one (varphi). Default is True.</p></div>
 </dd>
 <dt id="pyreport.symbols.greek.DEFAULT_VARPI"><code class="name">var <span class="ident">DEFAULT_VARPI</span></code></dt>
 <dd>
-<div class="desc"><p>Switch out the default LaTeX command for pi with the alternate one (varpi).</p></div>
+<div class="desc"><p>Switch out the default LaTeX command for pi with the alternate one (varpi). Default is False.</p></div>
 </dd>
 <dt id="pyreport.symbols.greek.DEFAULT_VARRHO"><code class="name">var <span class="ident">DEFAULT_VARRHO</span></code></dt>
 <dd>
-<div class="desc"><p>Switch out the default LaTeX command for rho with the alternate one (varrho).</p></div>
+<div class="desc"><p>Switch out the default LaTeX command for rho with the alternate one (varrho). Default is False.</p></div>
 </dd>
 <dt id="pyreport.symbols.greek.DEFAULT_VARTHETA"><code class="name">var <span class="ident">DEFAULT_VARTHETA</span></code></dt>
 <dd>
-<div class="desc"><p>Switch out the default LaTeX command for theta with the alternate one (vartheta).</p></div>
+<div class="desc"><p>Switch out the default LaTeX command for theta with the alternate one (vartheta). Default is False.</p></div>
 </dd>
 </dl>
 </section>
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pyreport.symbols.greek.Greeks"><code class="flex name class">
+<span>class <span class="ident">Greeks</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>A collection containing the Greek alphabet as symbols.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>alpha</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter alpha.</dd>
+<dt><strong><code>beta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter beta.</dd>
+<dt><strong><code>gamma</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter gamma.</dd>
+<dt><strong><code>delta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter delta.</dd>
+<dt><strong><code>epsilon</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter epsilon (depends on DEFAULT_VAREPSILON).</dd>
+<dt><strong><code>varepsilon</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter varepsilon (depends on DEFAULT_VAREPSILON).</dd>
+<dt><strong><code>zeta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter zeta.</dd>
+<dt><strong><code>eta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter eta.</dd>
+<dt><strong><code>theta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter theta (depends on DEFAULT_VARTHETA).</dd>
+<dt><strong><code>vartheta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter vartheta (depends on DEFAULT_VARTHETA).</dd>
+<dt><strong><code>iota</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter iota.</dd>
+<dt><strong><code>kappa</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter kappa.</dd>
+<dt><strong><code>lambda_</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter lambda.</dd>
+<dt><strong><code>mu</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter mu.</dd>
+<dt><strong><code>nu</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter nu.</dd>
+<dt><strong><code>xi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter xi.</dd>
+<dt><strong><code>pi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter pi (depends on DEFAULT_VARPI).</dd>
+<dt><strong><code>varpi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter varpi (depends on DEFAULT_VARPI).</dd>
+<dt><strong><code>rho</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter rho (depends on DEFAULT_VARRHO).</dd>
+<dt><strong><code>varrho</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter varrho (depends on DEFAULT_VARRHO).</dd>
+<dt><strong><code>sigma</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter sigma.</dd>
+<dt><strong><code>tau</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter tau.</dd>
+<dt><strong><code>upsilon</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter upsilon.</dd>
+<dt><strong><code>phi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter phi (depends on DEFAULT_VARPHI).</dd>
+<dt><strong><code>varphi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter varphi (depends on DEFAULT_VARPHI).</dd>
+<dt><strong><code>chi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter chi.</dd>
+<dt><strong><code>psi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter psi.</dd>
+<dt><strong><code>omega</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the small greek letter omega.</dd>
+<dt><strong><code>Gamma</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Gamma.</dd>
+<dt><strong><code>Delta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Delta.</dd>
+<dt><strong><code>Theta</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Theta.</dd>
+<dt><strong><code>Lambda</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Lambda.</dd>
+<dt><strong><code>Xi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Xi.</dd>
+<dt><strong><code>Pi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Pi.</dd>
+<dt><strong><code>Sigma</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Sigma.</dd>
+<dt><strong><code>Upsilon</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Upsilon.</dd>
+<dt><strong><code>Phi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Phi.</dd>
+<dt><strong><code>Psi</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Psi.</dd>
+<dt><strong><code>Omega</code></strong> :&ensp;<code>Symbol</code></dt>
+<dd>The symbol for the capital greek letter Omega.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pyreport.symbols.SymbolCollection" href="index.html#pyreport.symbols.SymbolCollection">SymbolCollection</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pyreport.symbols.greek.Greeks.Delta"><code class="name">var <span class="ident">Delta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Gamma"><code class="name">var <span class="ident">Gamma</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Lambda"><code class="name">var <span class="ident">Lambda</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Omega"><code class="name">var <span class="ident">Omega</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Phi"><code class="name">var <span class="ident">Phi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Pi"><code class="name">var <span class="ident">Pi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Psi"><code class="name">var <span class="ident">Psi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Sigma"><code class="name">var <span class="ident">Sigma</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Theta"><code class="name">var <span class="ident">Theta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Upsilon"><code class="name">var <span class="ident">Upsilon</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.Xi"><code class="name">var <span class="ident">Xi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.alpha"><code class="name">var <span class="ident">alpha</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.beta"><code class="name">var <span class="ident">beta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.chi"><code class="name">var <span class="ident">chi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.delta"><code class="name">var <span class="ident">delta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.epsilon"><code class="name">var <span class="ident">epsilon</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.eta"><code class="name">var <span class="ident">eta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.gamma"><code class="name">var <span class="ident">gamma</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.iota"><code class="name">var <span class="ident">iota</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.kappa"><code class="name">var <span class="ident">kappa</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.lambda_"><code class="name">var <span class="ident">lambda_</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.mu"><code class="name">var <span class="ident">mu</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.nu"><code class="name">var <span class="ident">nu</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.omega"><code class="name">var <span class="ident">omega</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.phi"><code class="name">var <span class="ident">phi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.pi"><code class="name">var <span class="ident">pi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.psi"><code class="name">var <span class="ident">psi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.rho"><code class="name">var <span class="ident">rho</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.sigma"><code class="name">var <span class="ident">sigma</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.tau"><code class="name">var <span class="ident">tau</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.theta"><code class="name">var <span class="ident">theta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.upsilon"><code class="name">var <span class="ident">upsilon</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.varepsilon"><code class="name">var <span class="ident">varepsilon</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.varphi"><code class="name">var <span class="ident">varphi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.varpi"><code class="name">var <span class="ident">varpi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.varrho"><code class="name">var <span class="ident">varrho</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.vartheta"><code class="name">var <span class="ident">vartheta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.xi"><code class="name">var <span class="ident">xi</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pyreport.symbols.greek.Greeks.zeta"><code class="name">var <span class="ident">zeta</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pyreport.symbols.SymbolCollection" href="index.html#pyreport.symbols.SymbolCollection">SymbolCollection</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pyreport.symbols.SymbolCollection.get_symbols" href="index.html#pyreport.symbols.SymbolCollection.get_symbols">get_symbols</a></code></li>
+<li><code><a title="pyreport.symbols.SymbolCollection.list_symbols" href="index.html#pyreport.symbols.SymbolCollection.list_symbols">list_symbols</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
 </section>
 </article>
 <nav id="sidebar">
@@ -126,6 +390,54 @@ setTimeout(() => input.focus(), 100);
 <li><code><a title="pyreport.symbols.greek.DEFAULT_VARPI" href="#pyreport.symbols.greek.DEFAULT_VARPI">DEFAULT_VARPI</a></code></li>
 <li><code><a title="pyreport.symbols.greek.DEFAULT_VARRHO" href="#pyreport.symbols.greek.DEFAULT_VARRHO">DEFAULT_VARRHO</a></code></li>
 <li><code><a title="pyreport.symbols.greek.DEFAULT_VARTHETA" href="#pyreport.symbols.greek.DEFAULT_VARTHETA">DEFAULT_VARTHETA</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pyreport.symbols.greek.Greeks" href="#pyreport.symbols.greek.Greeks">Greeks</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pyreport.symbols.greek.Greeks.Delta" href="#pyreport.symbols.greek.Greeks.Delta">Delta</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Gamma" href="#pyreport.symbols.greek.Greeks.Gamma">Gamma</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Lambda" href="#pyreport.symbols.greek.Greeks.Lambda">Lambda</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Omega" href="#pyreport.symbols.greek.Greeks.Omega">Omega</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Phi" href="#pyreport.symbols.greek.Greeks.Phi">Phi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Pi" href="#pyreport.symbols.greek.Greeks.Pi">Pi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Psi" href="#pyreport.symbols.greek.Greeks.Psi">Psi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Sigma" href="#pyreport.symbols.greek.Greeks.Sigma">Sigma</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Theta" href="#pyreport.symbols.greek.Greeks.Theta">Theta</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Upsilon" href="#pyreport.symbols.greek.Greeks.Upsilon">Upsilon</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.Xi" href="#pyreport.symbols.greek.Greeks.Xi">Xi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.alpha" href="#pyreport.symbols.greek.Greeks.alpha">alpha</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.beta" href="#pyreport.symbols.greek.Greeks.beta">beta</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.chi" href="#pyreport.symbols.greek.Greeks.chi">chi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.delta" href="#pyreport.symbols.greek.Greeks.delta">delta</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.epsilon" href="#pyreport.symbols.greek.Greeks.epsilon">epsilon</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.eta" href="#pyreport.symbols.greek.Greeks.eta">eta</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.gamma" href="#pyreport.symbols.greek.Greeks.gamma">gamma</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.iota" href="#pyreport.symbols.greek.Greeks.iota">iota</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.kappa" href="#pyreport.symbols.greek.Greeks.kappa">kappa</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.lambda_" href="#pyreport.symbols.greek.Greeks.lambda_">lambda_</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.mu" href="#pyreport.symbols.greek.Greeks.mu">mu</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.nu" href="#pyreport.symbols.greek.Greeks.nu">nu</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.omega" href="#pyreport.symbols.greek.Greeks.omega">omega</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.phi" href="#pyreport.symbols.greek.Greeks.phi">phi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.pi" href="#pyreport.symbols.greek.Greeks.pi">pi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.psi" href="#pyreport.symbols.greek.Greeks.psi">psi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.rho" href="#pyreport.symbols.greek.Greeks.rho">rho</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.sigma" href="#pyreport.symbols.greek.Greeks.sigma">sigma</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.tau" href="#pyreport.symbols.greek.Greeks.tau">tau</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.theta" href="#pyreport.symbols.greek.Greeks.theta">theta</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.upsilon" href="#pyreport.symbols.greek.Greeks.upsilon">upsilon</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.varepsilon" href="#pyreport.symbols.greek.Greeks.varepsilon">varepsilon</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.varphi" href="#pyreport.symbols.greek.Greeks.varphi">varphi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.varpi" href="#pyreport.symbols.greek.Greeks.varpi">varpi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.varrho" href="#pyreport.symbols.greek.Greeks.varrho">varrho</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.vartheta" href="#pyreport.symbols.greek.Greeks.vartheta">vartheta</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.xi" href="#pyreport.symbols.greek.Greeks.xi">xi</a></code></li>
+<li><code><a title="pyreport.symbols.greek.Greeks.zeta" href="#pyreport.symbols.greek.Greeks.zeta">zeta</a></code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
