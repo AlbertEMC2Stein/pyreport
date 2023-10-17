@@ -47,6 +47,104 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="pyreport.report.Environment"><code class="flex name class">
+<span>class <span class="ident">Environment</span></span>
+<span>(</span><span>name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Abstract base class for all environments.</p>
+<p>Constructor for Environment.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of environment.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li>pyreport.report.Document</li>
+<li><a title="pyreport.report.Segment" href="#pyreport.report.Segment">Segment</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pyreport.report.Environment.add_to_content"><code class="name flex">
+<span>def <span class="ident">add_to_content</span></span>(<span>self, obj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds an object to the environment.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, LatexObject</code></dt>
+<dd>Object to add to environment.</dd>
+</dl></div>
+</dd>
+<dt id="pyreport.report.Environment.get_structure"><code class="name flex">
+<span>def <span class="ident">get_structure</span></span>(<span>self, indent_level=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the structure of the environment as a string.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Indentation level, by default 0.</dd>
+</dl></div>
+</dd>
+<dt id="pyreport.report.Environment.texify"><code class="name flex">
+<span>def <span class="ident">texify</span></span>(<span>self, file, indent_level=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Writes the environment to a .tex-file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>file</code></strong> :&ensp;<code>file</code></dt>
+<dd>File to write to.</dd>
+<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Indentation level, by default 0.</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="pyreport.report.LaTeXObject"><code class="flex name class">
+<span>class <span class="ident">LaTeXObject</span></span>
+<span>(</span><span>name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Abstract base class for all LaTeX objects.</p>
+<p>Constructor for LatexObject.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of object.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li>pyreport.report.PlainText</li>
+<li>pyreport.report.Preamble</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pyreport.report.LaTeXObject.texify"><code class="name flex">
+<span>def <span class="ident">texify</span></span>(<span>self, file, indent_level=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Writes the object to a .tex-file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>file</code></strong> :&ensp;<code>file</code></dt>
+<dd>File to write to.</dd>
+<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Indentation level, by default 0.</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
 <dt id="pyreport.report.ReportError"><code class="flex name class">
 <span>class <span class="ident">ReportError</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -122,7 +220,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 <div class="desc"><p>Adds an object to the document.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>obj</code></strong> :&ensp;<code>Environment, LatexObject</code></dt>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, LatexObject</code></dt>
 <dd>Object to add to document.</dd>
 </dl></div>
 </dd>
@@ -165,7 +263,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 </dl></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li>pyreport.report.Environment</li>
+<li><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a></li>
 <li>abc.ABC</li>
 </ul>
 <h3>Methods</h3>
@@ -177,7 +275,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 <div class="desc"><p>Adds an object to the segment.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>obj</code></strong> :&ensp;<code>Environment, LatexObject</code></dt>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, LatexObject</code></dt>
 <dd>Object to add to segment.</dd>
 </dl>
 <h2 id="raises">Raises</h2>
@@ -186,31 +284,16 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 <dd>Raised when Segment of lower level is tried to be added.</dd>
 </dl></div>
 </dd>
-<dt id="pyreport.report.Segment.get_structure"><code class="name flex">
-<span>def <span class="ident">get_structure</span></span>(<span>self, indent_level=0)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Returns the structure of the environment as a string.</p>
-<h2 id="parameters">Parameters</h2>
-<dl>
-<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
-<dd>Indentation level, by default 0.</dd>
-</dl></div>
-</dd>
-<dt id="pyreport.report.Segment.texify"><code class="name flex">
-<span>def <span class="ident">texify</span></span>(<span>self, file, indent_level=0)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Writes the environment to a .tex-file.</p>
-<h2 id="parameters">Parameters</h2>
-<dl>
-<dt><strong><code>file</code></strong> :&ensp;<code>file</code></dt>
-<dd>File to write to.</dd>
-<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
-<dd>Indentation level, by default 0.</dd>
-</dl></div>
-</dd>
 </dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pyreport.report.Environment.get_structure" href="#pyreport.report.Environment.get_structure">get_structure</a></code></li>
+<li><code><a title="pyreport.report.Environment.texify" href="#pyreport.report.Environment.texify">texify</a></code></li>
+</ul>
+</li>
+</ul>
 </dd>
 </dl>
 </section>
@@ -285,6 +368,20 @@ setTimeout(() => input.focus(), 100);
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a></code></h4>
+<ul class="">
+<li><code><a title="pyreport.report.Environment.add_to_content" href="#pyreport.report.Environment.add_to_content">add_to_content</a></code></li>
+<li><code><a title="pyreport.report.Environment.get_structure" href="#pyreport.report.Environment.get_structure">get_structure</a></code></li>
+<li><code><a title="pyreport.report.Environment.texify" href="#pyreport.report.Environment.texify">texify</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></h4>
+<ul class="">
+<li><code><a title="pyreport.report.LaTeXObject.texify" href="#pyreport.report.LaTeXObject.texify">texify</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="pyreport.report.ReportError" href="#pyreport.report.ReportError">ReportError</a></code></h4>
 </li>
 <li>
@@ -305,8 +402,6 @@ setTimeout(() => input.focus(), 100);
 <h4><code><a title="pyreport.report.Segment" href="#pyreport.report.Segment">Segment</a></code></h4>
 <ul class="">
 <li><code><a title="pyreport.report.Segment.add_to_content" href="#pyreport.report.Segment.add_to_content">add_to_content</a></code></li>
-<li><code><a title="pyreport.report.Segment.get_structure" href="#pyreport.report.Segment.get_structure">get_structure</a></code></li>
-<li><code><a title="pyreport.report.Segment.texify" href="#pyreport.report.Segment.texify">texify</a></code></li>
 </ul>
 </li>
 </ul>

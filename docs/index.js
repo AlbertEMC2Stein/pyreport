@@ -838,6 +838,29 @@ INDEX=[
 "doc":"Raised when report cannot be made."
 },
 {
+"ref":"pyreport.report.Environment",
+"url":5,
+"doc":"Abstract base class for all environments. Constructor for Environment. Parameters      name : str Name of environment."
+},
+{
+"ref":"pyreport.report.Environment.texify",
+"url":5,
+"doc":"Writes the environment to a .tex-file. Parameters      file : file File to write to. indent_level : int, optional Indentation level, by default 0.",
+"func":1
+},
+{
+"ref":"pyreport.report.Environment.add_to_content",
+"url":5,
+"doc":"Adds an object to the environment. Parameters      obj : Environment, LatexObject Object to add to environment.",
+"func":1
+},
+{
+"ref":"pyreport.report.Environment.get_structure",
+"url":5,
+"doc":"Returns the structure of the environment as a string. Parameters      indent_level : int, optional Indentation level, by default 0.",
+"func":1
+},
+{
 "ref":"pyreport.report.Segment",
 "url":5,
 "doc":"A class to hold the LaTeX chapter, section, subsection, etc. environments. Constructor for Segment. Parameters      name : str Name of segment. segment_type : {\"chapter\", \"section\", \"subsection\", \"subsubsection\", \"paragraph\"} Type of segment. label : str, optional Label of segment, by default  . asterisk : bool, optional Whether to use asterisk, by default False."
@@ -858,6 +881,17 @@ INDEX=[
 "ref":"pyreport.report.Segment.get_structure",
 "url":5,
 "doc":"Returns the structure of the environment as a string. Parameters      indent_level : int, optional Indentation level, by default 0.",
+"func":1
+},
+{
+"ref":"pyreport.report.LaTeXObject",
+"url":5,
+"doc":"Abstract base class for all LaTeX objects. Constructor for LatexObject. Parameters      name : str Name of object."
+},
+{
+"ref":"pyreport.report.LaTeXObject.texify",
+"url":5,
+"doc":"Writes the object to a .tex-file. Parameters      file : file File to write to. indent_level : int, optional Indentation level, by default 0.",
 "func":1
 },
 {
