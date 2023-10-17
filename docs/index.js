@@ -817,7 +817,7 @@ INDEX=[
 {
 "ref":"pyreport.report.Reporter.add_to_document",
 "url":5,
-"doc":"Adds an object to the document. Parameters      obj : Environment, LatexObject Object to add to document.",
+"doc":"Adds an object to the document. Parameters      obj : Environment, LaTeXObject Object to add to document.",
 "func":1
 },
 {
@@ -840,7 +840,7 @@ INDEX=[
 {
 "ref":"pyreport.report.Environment",
 "url":5,
-"doc":"Abstract base class for all environments. Constructor for Environment. Parameters      name : str Name of environment."
+"doc":"Abstract base class for all environments. Constructor for Environment. Note that this class cannot not be instantiated. Parameters      name : str Name of environment."
 },
 {
 "ref":"pyreport.report.Environment.texify",
@@ -851,7 +851,7 @@ INDEX=[
 {
 "ref":"pyreport.report.Environment.add_to_content",
 "url":5,
-"doc":"Adds an object to the environment. Parameters      obj : Environment, LatexObject Object to add to environment.",
+"doc":"Adds an object to the environment. Parameters      obj : Environment, LaTeXObject Object to add to environment.",
 "func":1
 },
 {
@@ -874,7 +874,7 @@ INDEX=[
 {
 "ref":"pyreport.report.Segment.add_to_content",
 "url":5,
-"doc":"Adds an object to the segment. Parameters      obj : Environment, LatexObject Object to add to segment. Raises    TypeError Raised when Segment of lower level is tried to be added.",
+"doc":"Adds an object to the segment. Parameters      obj : Environment, LaTeXObject Object to add to segment. Raises    TypeError Raised when Segment of lower level is tried to be added.",
 "func":1
 },
 {
@@ -886,7 +886,7 @@ INDEX=[
 {
 "ref":"pyreport.report.LaTeXObject",
 "url":5,
-"doc":"Abstract base class for all LaTeX objects. Constructor for LatexObject. Parameters      name : str Name of object."
+"doc":"Abstract base class for all LaTeX objects. Constructor for LaTeXObject. Note that this class cannot not be instantiated. Parameters      name : str Name of object."
 },
 {
 "ref":"pyreport.report.LaTeXObject.texify",

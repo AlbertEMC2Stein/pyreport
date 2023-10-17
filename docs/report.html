@@ -53,7 +53,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 </code></dt>
 <dd>
 <div class="desc"><p>Abstract base class for all environments.</p>
-<p>Constructor for Environment.</p>
+<p>Constructor for Environment. Note that this class cannot not be instantiated.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
 <dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
@@ -77,7 +77,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 <div class="desc"><p>Adds an object to the environment.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, LatexObject</code></dt>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, <a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></dt>
 <dd>Object to add to environment.</dd>
 </dl></div>
 </dd>
@@ -113,7 +113,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 </code></dt>
 <dd>
 <div class="desc"><p>Abstract base class for all LaTeX objects.</p>
-<p>Constructor for LatexObject.</p>
+<p>Constructor for LaTeXObject. Note that this class cannot not be instantiated.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
 <dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
@@ -220,7 +220,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 <div class="desc"><p>Adds an object to the document.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, LatexObject</code></dt>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, <a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></dt>
 <dd>Object to add to document.</dd>
 </dl></div>
 </dd>
@@ -275,7 +275,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 <div class="desc"><p>Adds an object to the segment.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, LatexObject</code></dt>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, <a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></dt>
 <dd>Object to add to segment.</dd>
 </dl>
 <h2 id="raises">Raises</h2>
