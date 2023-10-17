@@ -11,7 +11,7 @@ class ReportKwargs:
     def __init__(self, **kwargs):
         """A class to hold the arguments for the report.
 
-        Parameters 
+        Parameters
         ----------
         type : "article"|"report", optional
             Type of report, by default "report"
