@@ -12,7 +12,7 @@ class Hebrews(SymbolCollection):
     @classmethod
     def get_symbols(cls):
         return super(Hebrews, cls).get_symbols()
-    
+
     @classmethod
     def list_symbols(cls):
         super(Hebrews, cls).list_symbols()

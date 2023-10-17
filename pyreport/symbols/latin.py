@@ -34,7 +34,7 @@ class BlackBoardSymbols(SymbolCollection):
     @classmethod
     def get_symbols(cls):
         return super(BlackBoardSymbols, cls).get_symbols()
-    
+
     @classmethod
     def list_symbols(cls):
         super(BlackBoardSymbols, cls).list_symbols()
@@ -71,7 +71,7 @@ class CalligraphicSymbols(SymbolCollection):
     @classmethod
     def get_symbols(cls):
         return super(CalligraphicSymbols, cls).get_symbols()
-    
+
     @classmethod
     def list_symbols(cls):
         super(CalligraphicSymbols, cls).list_symbols()
@@ -108,7 +108,7 @@ class FrakturSymbols(SymbolCollection):
     @classmethod
     def get_symbols(cls):
         return super(FrakturSymbols, cls).get_symbols()
-    
+
     @classmethod
     def list_symbols(cls):
         super(FrakturSymbols, cls).list_symbols()

@@ -57,3 +57,4 @@ def get_tags(root):
 
 def indented_write(file, n, text, end="\n"):
     file.write("\t" * n + text + end)
+    

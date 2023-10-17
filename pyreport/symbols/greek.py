@@ -28,7 +28,7 @@ DEFAULT_VARPHI = Switch("DEFAULT_VARPHI", True, False)
 
 class Greeks(SymbolCollection):
     ##################### SMALL LETTERS #####################
-    alpha = Symbol("alpha", r"\alpha", "\u03B1") 
+    alpha = Symbol("alpha", r"\alpha", "\u03B1")
     beta = Symbol("beta", r"\beta", "\u03B2")
     gamma = Symbol("gamma", r"\gamma", "\u03B3")
     delta = Symbol("delta", r"\delta", "\u03B4")
@@ -72,7 +72,7 @@ class Greeks(SymbolCollection):
     @classmethod
     def get_symbols(cls):
         return super(Greeks, cls).get_symbols()
-    
+
     @classmethod
     def list_symbols(cls):
         super(Greeks, cls).list_symbols()

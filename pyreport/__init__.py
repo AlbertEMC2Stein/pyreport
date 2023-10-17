@@ -1,6 +1,6 @@
 """pyreport - A Python package for creating LaTeX reports from within your code!"""
 
-import os.path as path
+from os import path
 from ._utils import get_tags
 
 __all__ = ["get_info"]

@@ -2,7 +2,7 @@ import os
 from abc import ABC, abstractmethod
 from ._utils import restricted_get, indented_write
 
-__all__ = ["ReportKwargs", "ReportMaker", "ReportError", "make_test_report"]
+__all__ = ["ReportKwargs", "Reporter", "ReportError", "make_test_report"]
 
 ###########################################################################################
 
@@ -63,13 +63,13 @@ class ReportKwargs:
             "maketitle": self.maketitle,
             "maketoc": self.maketoc,
         }
-    
+
 
 class Reporter:
     def __init__(self, report_name, report_kwargs):
         self.__report_name = report_name
         self.__report_contents = [
-            Preamble(**report_kwargs.to_dict()), 
+            Preamble(**report_kwargs.to_dict()),
             Document(**report_kwargs.to_dict())
         ]
 
@@ -105,8 +105,8 @@ class ReportError(Exception):
 class Environment(ABC):
     @abstractmethod
     def __init__(self, name):
-        self.__name = name
-        self.__contents = []
+        self._name = name
+        self._contents = []
 
     @abstractmethod
     def texify(self, file, indent_level=0):
@@ -114,38 +114,38 @@ class Environment(ABC):
 
     def add_to_content(self, obj):
         assert not isinstance(obj, Document), "Cannot add Document to Environment."
-        self.__contents.append(obj)
+        self._contents.append(obj)
 
     def print_structure(self, indent_level=0):
-        result = f"{self.__name}\n"
-        for content in self.__contents:
+        result = f"{self._name}\n"
+        for content in self._contents:
             if isinstance(content, Environment):
                 result += indent_level * "   " + f"|-- {content.print_structure(indent_level + 1)}"
 
     def __str__(self):
-        return f"Environment: {self.__name:<12}"
-    
+        return f"Environment: {self._name:<12}"
+
 
 class Document(Environment):
     def __init__(self, name="document", **kwargs):
         super().__init__(name)
-        self.__type = kwargs["type"]
-        self.__titlepage = kwargs["titlepage"]
-        self.__maketitle = kwargs["maketitle"]
-        self.__maketoc = kwargs["maketoc"]
+        self._type = kwargs["type"]
+        self._titlepage = kwargs["titlepage"]
+        self._maketitle = kwargs["maketitle"]
+        self._maketoc = kwargs["maketoc"]
 
     def texify(self, file, indent_level=0):
         indented_write(file, indent_level, "\\begin{document}")
-        indented_write(file, indent_level + 1, "\\maketitle\n" if self.__maketitle else "", end="")
+        indented_write(file, indent_level + 1, "\\maketitle\n" if self._maketitle else "", end="")
 
         # small hack because those two options interfere with each other
         toc_command = r"\tableofcontents"
-        if self.__titlepage == "notitlepage" and self.__type == "report":
-            toc_command = r"{\let\clearpage\relax\tableofcontents}" 
+        if self._titlepage == "notitlepage" and self._type == "report":
+            toc_command = r"{\let\clearpage\relax\tableofcontents}"
 
-        indented_write(file, indent_level + 1, toc_command + "\n" if self.__maketoc else "")
-        
-        for content in self.__contents:
+        indented_write(file, indent_level + 1, toc_command + "\n" if self._maketoc else "")
+
+        for content in self._contents:
             content.texify(file, indent_level + 1)
 
         indented_write(file, indent_level, "\\end{document}")
@@ -154,15 +154,15 @@ class Document(Environment):
 class Section(Environment):
     def __init__(self, name, label, asterisk=False):
         super().__init__(name)
-        self.__label = label
-        self.__asterisk = asterisk
+        self._label = label
+        self._asterisk = asterisk
 
-    def texify(self, file, indent_level=0): 
-        asterisk = "*" if self.__asterisk else ""
-        indented_write(file, indent_level, f"\\section{asterisk}{{{self.__name}}}")
-        indented_write(file, indent_level, f"\\label{{sec::{self.__label}}}")
+    def texify(self, file, indent_level=0):
+        asterisk = "*" if self._asterisk else ""
+        indented_write(file, indent_level, f"\\section{asterisk}{{{self._name}}}")
+        indented_write(file, indent_level, f"\\label{{sec::{self._label}}}")
 
-        for content in self.__contents:
+        for content in self._contents:
             content.texify(file, indent_level + 1)
 
         indented_write(file, 0, "")
@@ -173,34 +173,34 @@ class Section(Environment):
 
 class LatexObject(ABC):
     def __init__(self, name):
-        self.__name = name
+        self._name = name
 
     @abstractmethod
     def texify(self, file, indent_level=0):
         pass
 
     def __str__(self):
-        return f"LatexObject: {self.__name:<12}"
-    
+        return f"LatexObject: {self._name:<12}"
+
 
 class Preamble(LatexObject):
     def __init__(self, name="preamble", **kwargs):
         super().__init__(name)
-        self.__type = kwargs["type"]
-        self.__fontsize = kwargs["fontsize"]
-        self.__columns = kwargs["columns"]
-        self.__titlepage = kwargs["titlepage"]
-        self.__packages = kwargs["packages"]
-        self.__author = kwargs["author"]  
-        self.__title = kwargs["title"]
-        self.__date = kwargs["date"]
+        self._type = kwargs["type"]
+        self._fontsize = kwargs["fontsize"]
+        self._columns = kwargs["columns"]
+        self._titlepage = kwargs["titlepage"]
+        self._packages = kwargs["packages"]
+        self._author = kwargs["author"]
+        self._title = kwargs["title"]
+        self._date = kwargs["date"]
 
     def texify(self, file, indent_level=0):
         head = "\\documentclass[%dpt, %s, %s]{%s}" % (
-            self.__fontsize,
-            self.__columns,
-            self.__titlepage,
-            self.__type,
+            self._fontsize,
+            self._columns,
+            self._titlepage,
+            self._type,
         )
 
         indented_write(file, indent_level, head)
@@ -210,21 +210,21 @@ class Preamble(LatexObject):
         indented_write(file, indent_level, "\\usepackage{graphicx}")
         indented_write(file, indent_level, "\\usepackage{hyperref}")
 
-        for package in self.__packages:
+        for package in self._packages:
             indented_write(file, indent_level, f"\\usepackage{{{package}}}")
 
-        indented_write(file, indent_level, f"\n\\author{{{self.__author}}}")
-        indented_write(file, indent_level, f"\\title{{{self.__title}}}")
-        indented_write(file, indent_level, f"\\date{{{self.__date}}}\n")
+        indented_write(file, indent_level, f"\n\\author{{{self._author}}}")
+        indented_write(file, indent_level, f"\\title{{{self._title}}}")
+        indented_write(file, indent_level, f"\\date{{{self._date}}}\n")
 
 
 class PlainText(LatexObject):
     def __init__(self, text):
         super().__init__("plaintext")
-        self.__text = text
+        self._text = text
 
     def texify(self, file, indent_level=0):
-        indented_write(file, indent_level, self.__text)
+        indented_write(file, indent_level, self._text)
 
 
 ###########################################################################################
@@ -235,8 +235,6 @@ def make_test_report():
         author="Albert Stein", title="Test Report", maketoc=True, type="article"
     )
     reporter = Reporter("test_report", report_kwargs)
-
-    doc = Document(**report_kwargs.to_dict())
 
     section1 = Section("Section 1", "section1", asterisk=True)
     section2 = Section("Section 2", "section2")

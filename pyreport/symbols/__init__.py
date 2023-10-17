@@ -5,12 +5,12 @@ __all__ = ["Symbol", "SymbolCollection"]
 
 class Symbol:
     def __init__(self, plaintext, default_latex, default_unicode, alternate_latex=None, alternate_unicode=None, switch=lambda: False):
-        self.__plaintext = plaintext
-        self.__default_latex = default_latex
-        self.__default_unicode = default_unicode
-        self.__alternate_latex = alternate_latex
-        self.__alternate_unicode = alternate_unicode
-        self.__switch = switch
+        self._plaintext = plaintext
+        self._default_latex = default_latex
+        self._default_unicode = default_unicode
+        self._alternate_latex = alternate_latex
+        self._alternate_unicode = alternate_unicode
+        self._switch = switch
 
     # @property
     # def __doc__(self):
@@ -26,21 +26,21 @@ class Symbol:
 
     def to_tex(self):
         return (
-            self.__alternate_latex
-            if (self.__alternate_latex and self.__switch())
-            else self.__default_latex
+            self._alternate_latex
+            if (self._alternate_latex and self._switch())
+            else self._default_latex
         )
 
     def to_plain(self):
-        return self.__plaintext
-    
+        return self._plaintext
+
     def to_unicode(self):
         return (
-            self.__alternate_unicode
-            if (self.__alternate_unicode and self.__switch())
-            else self.__default_unicode
+            self._alternate_unicode
+            if (self._alternate_unicode and self._switch())
+            else self._default_unicode
         )
-    
+
     def __str__(self):
         return f"Plaintext: {self.to_plain():<12} TeX: {self.to_tex():<13} Unicode: {self.to_unicode()}"
 
