@@ -1,10 +1,22 @@
-from pyreport.symbols import Symbol
+from pyreport.symbols import SymbolCollection, Symbol
 
 
-__all__ = ['aleph', 'beth', 'daleth', 'gimel']
+__all__ = ['Hebrews']
 
 
-aleph  = Symbol('aleph', r"\aleph")
-beth   = Symbol('beth', r"\beth")
-daleth = Symbol('daleth', r"\daleth")
-gimel  = Symbol('gimel', r"\gimel")
+class Hebrews(SymbolCollection):
+    aleph  = Symbol('aleph', r"\aleph", "\u2135")
+    beth   = Symbol('beth', r"\beth", "\u2136")
+    daleth = Symbol('daleth', r"\daleth", "\u2138")
+    gimel  = Symbol('gimel', r"\gimel", "\u2137")
+
+    @classmethod
+    def get_symbols(cls):
+        return super(Hebrews, cls).get_symbols()
+    
+    @classmethod
+    def list_symbols(cls):
+        super(Hebrews, cls).list_symbols()
+
+for symbol in Hebrews.get_symbols().values():
+    print(symbol)
