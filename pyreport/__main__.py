@@ -1,3 +1,5 @@
+"""This module is the main entry point for the command line interface (CLI)."""
+
 import argparse as ap
 import os
 import sys
@@ -8,6 +10,14 @@ from . import get_info, ROOT_DIR
 
 
 def run_docs(args):
+    """Build the documentation.
+
+    Parameters
+    ----------
+    args : argparse.Namespace
+        The command line arguments.
+    """
+
     sys.path.append(os.path.join(ROOT_DIR, "docs"))
 
     print("Building documentation...")
@@ -16,12 +26,22 @@ def run_docs(args):
 
 
 def run_test(args):
+    """Build the test report.
+    
+    Parameters
+    ----------
+    args : argparse.Namespace
+        Unused, but required by the CLI.
+    """
+
     _ = args
     print("Building test report...")
     make_test_report()
 
 
 def cli_entry():
+    """Entry point for the CLI."""
+
     parser = ap.ArgumentParser(
         prog="pyreport",
         description=get_info()["description"],
