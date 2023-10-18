@@ -20,3 +20,23 @@
 - [ ] Add support for label-referencing
 - [ ] Add support for bibliography and sources, maybe even with automatic citation generation via classes like Article, Book, Report, etc.
 - [ ] Add support for custom style files to customize the look of the report
+
+### Example how it could look like
+```{python}
+from pyreport.math import *
+from pyreport.report import *
+
+report = Reporter('foo')
+
+f = Function(f, lambda x: x**2)
+x = Variable(x, 0, watch=True)
+for i in range(100):
+    x = x + i
+
+print(x) # -> 5050 or x = 5050
+print(f(x, eval=True)) # -> 25502500
+
+report.add(Equation(f, x, symbols=True)) # f(x) = x^2
+report.add(Equation(f, x, symbols=False)) # -> f(x) = 25502500 
+report.add(x.create_trace()) # -> 1:   x = 0     2:   x = 1     3: x = 3 ...
+```
