@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>pyreport.report API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="A module to create LaTeX reports …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css" crossorigin>
@@ -24,6 +24,10 @@
 <h1 class="title">Module <code>pyreport.report</code></h1>
 </header>
 <section id="section-intro">
+<p>A module to create LaTeX reports.</p>
+<p>This module provides a class to create LaTeX reports. It is based on the
+LaTeX document classes 'article' and 'report'. The report is created in the
+'out' folder and is compiled with 'latexmk'.</p>
 </section>
 <section>
 </section>
@@ -36,13 +40,111 @@
 <span>def <span class="ident">make_test_report</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Creates a test report.</p></div>
 </dd>
 </dl>
 </section>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
+<dt id="pyreport.report.Environment"><code class="flex name class">
+<span>class <span class="ident">Environment</span></span>
+<span>(</span><span>name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Abstract base class for all environments.</p>
+<p>Constructor for Environment. Note that this class cannot not be instantiated.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of environment.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li>pyreport.report.Document</li>
+<li><a title="pyreport.report.Segment" href="#pyreport.report.Segment">Segment</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pyreport.report.Environment.add_to_content"><code class="name flex">
+<span>def <span class="ident">add_to_content</span></span>(<span>self, obj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds an object to the environment.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, <a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></dt>
+<dd>Object to add to environment.</dd>
+</dl></div>
+</dd>
+<dt id="pyreport.report.Environment.get_structure"><code class="name flex">
+<span>def <span class="ident">get_structure</span></span>(<span>self, indent_level=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the structure of the environment as a string.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Indentation level, by default 0.</dd>
+</dl></div>
+</dd>
+<dt id="pyreport.report.Environment.texify"><code class="name flex">
+<span>def <span class="ident">texify</span></span>(<span>self, file, indent_level=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Writes the environment to a .tex-file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>file</code></strong> :&ensp;<code>file</code></dt>
+<dd>File to write to.</dd>
+<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Indentation level, by default 0.</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="pyreport.report.LaTeXObject"><code class="flex name class">
+<span>class <span class="ident">LaTeXObject</span></span>
+<span>(</span><span>name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Abstract base class for all LaTeX objects.</p>
+<p>Constructor for LaTeXObject. Note that this class cannot not be instantiated.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of object.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li>pyreport.report.PlainText</li>
+<li>pyreport.report.Preamble</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pyreport.report.LaTeXObject.texify"><code class="name flex">
+<span>def <span class="ident">texify</span></span>(<span>self, file, indent_level=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Writes the object to a .tex-file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>file</code></strong> :&ensp;<code>file</code></dt>
+<dd>File to write to.</dd>
+<dt><strong><code>indent_level</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Indentation level, by default 0.</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
 <dt id="pyreport.report.ReportError"><code class="flex name class">
 <span>class <span class="ident">ReportError</span></span>
 <span>(</span><span>*args, **kwargs)</span>
@@ -60,83 +162,138 @@
 <span>(</span><span>**kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>A class to hold the arguments for the report.</p>
+<div class="desc"><p>A class to hold the arguments for the Reporter class.</p>
+<p>Constructor for ReportKwargs.</p>
 <h2 id="parameters">Parameters</h2>
-<p>type : "article"|"report", optional
-Type of report, by default "report"
-fontsize : 10|11|12, optional
-Font size, by default 12
-columns : "onecolumn"|"twocolumn", optional
-Number of columns, by default "onecolumn"
-titlepage : "notitlepage"|"titlepage", optional
-Title page, by default "notitlepage"
-packages : list, optional
-List of packages to import, by default []
-author : str, optional
-Author of report, by default None
-title : str, optional
-Title of report, by default None
-date : str, optional
-Date of report, by default "\today"
-maketitle : bool, optional
-Make title, by default True
-maketoc : bool, optional
-Make table of contents, by default False</p></div>
+<dl>
+<dt><strong><code>type</code></strong> :&ensp;<code>{"article", "report"}</code>, optional</dt>
+<dd>Type of report, by default "report".</dd>
+<dt><strong><code>fontsize</code></strong> :&ensp;<code>{10, 11, 12}</code>, optional</dt>
+<dd>Font size, by default 12.</dd>
+<dt><strong><code>columns</code></strong> :&ensp;<code>{"onecolumn", "twocolumn"}</code>, optional</dt>
+<dd>Number of columns, by default "onecolumn".</dd>
+<dt><strong><code>titlepage</code></strong> :&ensp;<code>{"notitlepage", "titlepage"}</code>, optional</dt>
+<dd>Title page, by default "notitlepage".</dd>
+<dt><strong><code>packages</code></strong> :&ensp;<code>list</code>, optional</dt>
+<dd>List of packages to import, by default [].</dd>
+<dt><strong><code>author</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Author of report, by default "".</dd>
+<dt><strong><code>title</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Title of report, by default "".</dd>
+<dt><strong><code>date</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Date of report, by default "\today".</dd>
+<dt><strong><code>maketitle</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Make title, by default True.</dd>
+<dt><strong><code>maketoc</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Make table of contents, by default False.</dd>
+</dl></div>
 <h3>Methods</h3>
 <dl>
-<dt id="pyreport.report.ReportKwargs.get_preamble"><code class="name flex">
-<span>def <span class="ident">get_preamble</span></span>(<span>self)</span>
+<dt id="pyreport.report.ReportKwargs.to_dict"><code class="name flex">
+<span>def <span class="ident">to_dict</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Returns a dictionary with the arguments.</p></div>
 </dd>
 </dl>
 </dd>
-<dt id="pyreport.report.ReportMaker"><code class="flex name class">
-<span>class <span class="ident">ReportMaker</span></span>
+<dt id="pyreport.report.Reporter"><code class="flex name class">
+<span>class <span class="ident">Reporter</span></span>
 <span>(</span><span>report_name, report_kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>A class to create LaTeX reports.</p>
+<p>Constructor for Reporter.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>report_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of report.</dd>
+<dt><strong><code>report_kwargs</code></strong> :&ensp;<code><a title="pyreport.report.ReportKwargs" href="#pyreport.report.ReportKwargs">ReportKwargs</a></code></dt>
+<dd>Arguments for report.</dd>
+</dl></div>
 <h3>Methods</h3>
 <dl>
-<dt id="pyreport.report.ReportMaker.add_equation"><code class="name flex">
-<span>def <span class="ident">add_equation</span></span>(<span>self, equation, label=None)</span>
+<dt id="pyreport.report.Reporter.add_to_document"><code class="name flex">
+<span>def <span class="ident">add_to_document</span></span>(<span>self, obj)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Adds an object to the document.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, <a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></dt>
+<dd>Object to add to document.</dd>
+</dl></div>
 </dd>
-<dt id="pyreport.report.ReportMaker.add_paragraph"><code class="name flex">
-<span>def <span class="ident">add_paragraph</span></span>(<span>self, paragraph_name, asterisk=False)</span>
+<dt id="pyreport.report.Reporter.print_structure"><code class="name flex">
+<span>def <span class="ident">print_structure</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Prints the structure of the report.</p></div>
 </dd>
-<dt id="pyreport.report.ReportMaker.add_section"><code class="name flex">
-<span>def <span class="ident">add_section</span></span>(<span>self, section_name)</span>
+<dt id="pyreport.report.Reporter.report"><code class="name flex">
+<span>def <span class="ident">report</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
-</dd>
-<dt id="pyreport.report.ReportMaker.add_subsection"><code class="name flex">
-<span>def <span class="ident">add_subsection</span></span>(<span>self, subsection_name)</span>
-</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="pyreport.report.ReportMaker.add_subsubsection"><code class="name flex">
-<span>def <span class="ident">add_subsubsection</span></span>(<span>self, subsubsection_name)</span>
-</code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt id="pyreport.report.ReportMaker.make"><code class="name flex">
-<span>def <span class="ident">make</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"></div>
+<div class="desc"><p>Creates and compiles the report.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code><a title="pyreport.report.ReportError" href="#pyreport.report.ReportError">ReportError</a></code></dt>
+<dd>Raised when report cannot be made.</dd>
+</dl></div>
 </dd>
 </dl>
+</dd>
+<dt id="pyreport.report.Segment"><code class="flex name class">
+<span>class <span class="ident">Segment</span></span>
+<span>(</span><span>name, segment_type, label='', asterisk=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A class to hold the LaTeX chapter, section, subsection, etc. environments.</p>
+<p>Constructor for Segment.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of segment.</dd>
+<dt><strong><code>segment_type</code></strong> :&ensp;<code>{"chapter", "section", "subsection", "subsubsection", "paragraph"}</code></dt>
+<dd>Type of segment.</dd>
+<dt><strong><code>label</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Label of segment, by default "".</dd>
+<dt><strong><code>asterisk</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether to use asterisk, by default False.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pyreport.report.Segment.add_to_content"><code class="name flex">
+<span>def <span class="ident">add_to_content</span></span>(<span>self, obj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds an object to the segment.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>obj</code></strong> :&ensp;<code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a>, <a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></dt>
+<dd>Object to add to segment.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>TypeError</code></dt>
+<dd>Raised when Segment of lower level is tried to be added.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pyreport.report.Environment.get_structure" href="#pyreport.report.Environment.get_structure">get_structure</a></code></li>
+<li><code><a title="pyreport.report.Environment.texify" href="#pyreport.report.Environment.texify">texify</a></code></li>
+</ul>
+</li>
+</ul>
 </dd>
 </dl>
 </section>
@@ -211,23 +368,40 @@ setTimeout(() => input.focus(), 100);
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
+<h4><code><a title="pyreport.report.Environment" href="#pyreport.report.Environment">Environment</a></code></h4>
+<ul class="">
+<li><code><a title="pyreport.report.Environment.add_to_content" href="#pyreport.report.Environment.add_to_content">add_to_content</a></code></li>
+<li><code><a title="pyreport.report.Environment.get_structure" href="#pyreport.report.Environment.get_structure">get_structure</a></code></li>
+<li><code><a title="pyreport.report.Environment.texify" href="#pyreport.report.Environment.texify">texify</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pyreport.report.LaTeXObject" href="#pyreport.report.LaTeXObject">LaTeXObject</a></code></h4>
+<ul class="">
+<li><code><a title="pyreport.report.LaTeXObject.texify" href="#pyreport.report.LaTeXObject.texify">texify</a></code></li>
+</ul>
+</li>
+<li>
 <h4><code><a title="pyreport.report.ReportError" href="#pyreport.report.ReportError">ReportError</a></code></h4>
 </li>
 <li>
 <h4><code><a title="pyreport.report.ReportKwargs" href="#pyreport.report.ReportKwargs">ReportKwargs</a></code></h4>
 <ul class="">
-<li><code><a title="pyreport.report.ReportKwargs.get_preamble" href="#pyreport.report.ReportKwargs.get_preamble">get_preamble</a></code></li>
+<li><code><a title="pyreport.report.ReportKwargs.to_dict" href="#pyreport.report.ReportKwargs.to_dict">to_dict</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="pyreport.report.ReportMaker" href="#pyreport.report.ReportMaker">ReportMaker</a></code></h4>
-<ul class="two-column">
-<li><code><a title="pyreport.report.ReportMaker.add_equation" href="#pyreport.report.ReportMaker.add_equation">add_equation</a></code></li>
-<li><code><a title="pyreport.report.ReportMaker.add_paragraph" href="#pyreport.report.ReportMaker.add_paragraph">add_paragraph</a></code></li>
-<li><code><a title="pyreport.report.ReportMaker.add_section" href="#pyreport.report.ReportMaker.add_section">add_section</a></code></li>
-<li><code><a title="pyreport.report.ReportMaker.add_subsection" href="#pyreport.report.ReportMaker.add_subsection">add_subsection</a></code></li>
-<li><code><a title="pyreport.report.ReportMaker.add_subsubsection" href="#pyreport.report.ReportMaker.add_subsubsection">add_subsubsection</a></code></li>
-<li><code><a title="pyreport.report.ReportMaker.make" href="#pyreport.report.ReportMaker.make">make</a></code></li>
+<h4><code><a title="pyreport.report.Reporter" href="#pyreport.report.Reporter">Reporter</a></code></h4>
+<ul class="">
+<li><code><a title="pyreport.report.Reporter.add_to_document" href="#pyreport.report.Reporter.add_to_document">add_to_document</a></code></li>
+<li><code><a title="pyreport.report.Reporter.print_structure" href="#pyreport.report.Reporter.print_structure">print_structure</a></code></li>
+<li><code><a title="pyreport.report.Reporter.report" href="#pyreport.report.Reporter.report">report</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pyreport.report.Segment" href="#pyreport.report.Segment">Segment</a></code></h4>
+<ul class="">
+<li><code><a title="pyreport.report.Segment.add_to_content" href="#pyreport.report.Segment.add_to_content">add_to_content</a></code></li>
 </ul>
 </li>
 </ul>
