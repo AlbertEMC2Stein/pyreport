@@ -6,6 +6,7 @@ LaTeX document classes 'article' and 'report'. The report is created in the
 """
 
 import os
+import pandas as pd
 from abc import ABC, abstractmethod
 from ._utils import restricted_get, indented_write
 
@@ -464,6 +465,46 @@ class PlainText(LaTeXObject):
         indented_write(file, indent_level, self._text)
 
 
+class Table(LaTeXObject):
+    """ Class to hold LaTeX tables.
+    
+    Tables can be created from pandas DataFrames.
+    """
+    
+    def __init__(self, data, name="table", caption="", label=""):
+        """Constructor for Table.
+
+        Parameters
+        ----------
+        data : pandas.DataFrame or str
+            Data to hold. If str, then it is assumed to be a path to a .csv-file.
+        name : str, optional
+            Name of table, by default "table".
+        caption : str, optional
+            Caption of table, by default "".
+        label : str, optional
+            Label of table, by default "".
+        """
+        super().__init__(name)
+        assert isinstance(data, (str, pd.DataFrame)), \
+            "Data must be a pandas.DataFrame or a path to a .csv-file."
+
+        self._data = data
+        self._caption = caption
+        self._label = label
+        if isinstance(data, str):
+            self._data = pd.read_csv(data)
+
+    def texify(self, file, indent_level=0):
+        tex = "\\begin{table}[ht]\n"
+        tex += "\\centering\n"
+        tex += self._data.to_latex(index=False)
+        tex += f"\\caption{{{self._caption}}}\n" if self._caption else ""
+        tex += f"\\label{{tab:{self._label}}}\n" if self._label else ""
+        tex += "\\end{table}\n"
+        indented_write(file, indent_level, tex)
+
+
 ###########################################################################################
 
 
@@ -481,13 +522,15 @@ def make_test_report():
     )
     reporter = Reporter("test_report", report_kwargs)
 
-    chapter1        = Segment("The Answer", "chapter1", "chapter")
-    section1        = Segment("Intro", "section1", "section")
-    subsection11    = Segment("Sub Intro", "subsection11", "subsection")
-    section2        = Segment("Main", "section2", "section")
-    section3        = Segment("Conclusion", "section3", "section")
+    chapter1        = Segment("The Answer", "chapter", "chapter1")
+    section1        = Segment("Intro", "section", "section1")
+    subsection11    = Segment("Sub Intro", "subsection", "subsection11")
+    section2        = Segment("Main", "section", "section2")
+    section3        = Segment("Conclusion", "section", "section3")
 
     subsection11.add_to_content(PlainText("This is some plain text."))
+
+    subsection11.add_to_content(Table("data/test.csv", caption="This is a table.", label="test"))
 
     section1.add_to_content(subsection11)
     chapter1.add_to_content(section1)
