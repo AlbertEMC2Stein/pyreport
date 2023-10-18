@@ -19,6 +19,7 @@
 - [ ] Add support for custom commands
 - [ ] Add support for label-referencing
 - [ ] Add support for bibliography and sources, maybe even with automatic citation generation via classes like Article, Book, Report, etc.
+- [ ] Add support for variable glossary or environment that automatically creates a glossary from all variables provided to it together with a short description
 - [ ] Add support for custom style files to customize the look of the report
 
 ### Example how it could look like
