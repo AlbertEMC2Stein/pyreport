@@ -1,1 +1,1 @@
-<link rel="icon" href="https://raw.githubusercontent.com/AlbertEMC2Stein/pyreport/4a3612afa77d819792fe29c84e9b36988cfb783f/docs/images/pyreport.svg">
+<link rel="icon" href="https://raw.githubusercontent.com/AlbertEMC2Stein/pyreport/main/docs/images/pyreport.png">
