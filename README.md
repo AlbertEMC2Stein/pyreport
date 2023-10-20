@@ -13,6 +13,7 @@
     - [ ] Add support for variable tracking such that variable objects can be used in computations and the result is automatically displayed
     - [ ] Add syntax for builing formulas via python operations, e.g. `Variable(alpha, 0.5) + Variable(beta, 0.5)` either renders to $\alpha + \beta$ or returns the value 1.0.
     - [ ] Add variable logging to see how the variable changes over time (maybe even own Logging environment?)
+        - [ ] Add `x.watch` to automatically log the variable `x` whenever it changes. Also make it possible to specify a list of variables to only log interactions with them, e.g. `x.watch([y, z])` only logs interactions of `x` with `y` and `z`.
     - [ ] Add support for function evaluations and Variable assignments via `Function(f, lambda x: x**2)` and `Variable(x, 2)` such that `f(x)` renders to $f(x) = x^2$ and `f(x).value` returns 4.
     - [ ] Add support for vectors, matrices and non-scalar functions.
 - [ ] Add support for custom environments
@@ -21,6 +22,7 @@
 - [ ] Add support for bibliography and sources, maybe even with automatic citation generation via classes like Article, Book, Report, etc.
 - [ ] Add support for variable glossary or environment that automatically creates a glossary from all variables provided to it together with a short description
 - [ ] Add support for custom style files to customize the look of the report
+- [ ] Add support for with Reporter(...) as report: ... to automatically create a report and save it to a file
 
 ### Example how it could look like
 ```{python}
