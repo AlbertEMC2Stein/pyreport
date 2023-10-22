@@ -18,13 +18,20 @@ Simplify your report creation process with pyreport. No LaTeX expertise required
 - [Saif Khan](mailto:saif.khan@edu.rptu.de)
 
 ## Table of Contents
-- [Introduction](#pyreport-automate-your-latex-reports-with-python-)
-- [Roadmap](#roadmap)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
+- [pyreport: Automate Your LaTeX Reports with Python 📝](#pyreport-automate-your-latex-reports-with-python-)
+  - [Table of Contents](#table-of-contents)
+  - [Roadmap](#roadmap)
+    - [Basic Functionality](#basic-functionality)
+    - [Data Representation](#data-representation)
+    - [Mathematical Expressions](#mathematical-expressions)
+    - [Advanced Mathematical Concepts](#advanced-mathematical-concepts)
+    - [Integration and References](#integration-and-references)
+    - [High-level Convenience](#high-level-convenience)
+  - [Getting Started](#getting-started)
+  - [Usage](#usage)
+  - [Examples](#examples)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Roadmap
 Our development roadmap is structured to follow a bottom-up approach, starting with fundamental features and gradually adding more advanced capabilities.
@@ -50,6 +57,8 @@ Our development roadmap is structured to follow a bottom-up approach, starting w
 - [ ] Support for variable tracking to see how variables change over time.
     - [ ] Add `x.watch` to automatically log the variable `x` whenever it changes. 
     - [ ] Make it possible to specify a list of variables to only log interactions with them, e.g. `x.watch([y, z])` only logs interactions of `x` with `y` and `z`.
+    - [ ] Add temporary logging via `x.log()` to log the current value of `x` without watching it.
+    - [ ] Add temporary variables that are the result of an operation, e.g. `x = Variable(x, 0); y = Variable(y, 1); z = x + y` such that `z` is a temporary variable that is not watched and only exists for the duration of the current scope.
 - [ ] Builing formulas via python operations, e.g. `Variable(alpha, 0.5) + Variable(beta, 0.5)` either renders to $\alpha + \beta$ or returns the value 1.0.
 - [ ] Add support for function evaluations and Variable assignments via `Function(f, lambda x: x**2)` and `Variable(x, 2)` such that `f(x)` renders to $f(x) = x^2$ and `f(x).value` returns 4.
 - [ ] Add variable logging to see how the variable changes over time (maybe even own Logging environment?).
