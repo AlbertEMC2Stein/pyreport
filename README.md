@@ -148,6 +148,6 @@ report.add(x.create_trace())  # -> 1:   x = 0     2:   x = 1     3: x = 3 ...
 We welcome contributions! If you'd like to contribute to the development of pyreport, please see our [contribution guidelines](CONTRIBUTING.md) for more information.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
 
 Feel free to customize and expand the sections as needed. Your README provides a comprehensive overview of your project's capabilities and how to get started with it.
