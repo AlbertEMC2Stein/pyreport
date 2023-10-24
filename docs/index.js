@@ -1,11 +1,11 @@
 URLS=[
 "index.html",
-"pyreport/maths.html",
-"pyreport/report.html",
-"pyreport/symbols/index.html",
-"pyreport/symbols/greek.html",
-"pyreport/symbols/hebrew.html",
-"pyreport/symbols/latin.html"
+"maths.html",
+"report.html",
+"symbols/index.html",
+"symbols/greek.html",
+"symbols/hebrew.html",
+"symbols/latin.html"
 ];
 INDEX=[
 {

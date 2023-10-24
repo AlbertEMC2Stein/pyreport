@@ -55,7 +55,7 @@ def modify_docfiles():
 
     with open(path.join(DOCS_DIR, "index.js"), "r", encoding="utf8") as f:
         js = f.read()
-        js = js.replace(f"{PACKAGE_NAME}/index.html", "index.html")
+        js = js.replace(f"{PACKAGE_NAME}/", "")
 
         with open(path.join(DOCS_DIR, "index.js"), "w", encoding="utf8") as f:
             f.write(js)
