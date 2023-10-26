@@ -10,8 +10,8 @@ def timestamp():
 def generate_tmp(value):
     if isinstance(value, Variable):
         return value
-    
-    hexcode = list('0123456789ABCDEF')
+
+    hexcode = list("0123456789ABCDEF")
     tmp_name = "tmp_" + "".join([choice(hexcode) for _ in range(6)])
 
     return Variable(tmp_name, value)
@@ -29,6 +29,7 @@ def binarytrack(lhs, rhs, result_var_name, template):
     if rhs.is_watching(lhs):
         rhs.log(log_msg)
 
+
 def ternarytrack(var1, var2, var3, result_var_name, template):
     inst1 = isinstance(var1, Variable)
     inst2 = isinstance(var2, Variable)
@@ -37,9 +38,13 @@ def ternarytrack(var1, var2, var3, result_var_name, template):
         return
 
     varss = [var for var in [var1, var2, var3] if isinstance(var, Variable)]
-    names = [var.name if isinstance(var, Variable) else var for var in [var1, var2, var3]]
+    names = [
+        var.name if isinstance(var, Variable) else var for var in [var1, var2, var3]
+    ]
 
-    log_msg = f"{result_var_name} = {template.format(*names)}, " + ", ".join([f"{var.name} = {var.value}" for var in varss])
+    log_msg = f"{result_var_name} = {template.format(*names)}, " + ", ".join(
+        [f"{var.name} = {var.value}" for var in varss]
+    )
 
     if inst1 and (var1.is_watching(var2) or var1.is_watching(var3)):
         var1.log(log_msg)
@@ -50,6 +55,7 @@ def ternarytrack(var1, var2, var3, result_var_name, template):
     if inst3 and (var3.is_watching(var1) or var3.is_watching(var2)):
         var3.log(log_msg)
 
+
 class Variable:
     def __init__(self, name, value):
         if type(value) not in [int, float, complex]:
@@ -58,11 +64,13 @@ class Variable:
         self._name = name
         self._value = value
         self._watch = None
-        self._logs = Log()
+        self._logs = Log() # collective log?
         self._logs(f"Start of log for variable {name} with initial value {value}")
 
     def assign(self, __value):
-        value, from_ = __value.identity if isinstance(__value, Variable) else (__value, None)
+        value, from_ = (
+            __value.identity if isinstance(__value, Variable) else (__value, None)
+        )
 
         if type(value) not in [int, float, complex]:
             raise TypeError("Variable value must be int, float or complex")
@@ -70,7 +78,10 @@ class Variable:
         self._value = value
 
         if self._watch is not None:
-            self._logs(f"{self._name} = {value}" + (f" from {from_}" if from_ is not None else ""))
+            self._logs(
+                f"{self._name} = {value}"
+                + (f" from {from_}" if from_ is not None else "")
+            )
 
     @property
     def name(self):
@@ -122,7 +133,7 @@ class Variable:
         return self._value, self._name
 
     @property
-    def real(self): 
+    def real(self):
         return self._value.real
 
     @property
@@ -149,7 +160,12 @@ class Variable:
 
     def __floordiv__(self, __value):
         result = generate_tmp(self._value // __value)
-        binarytrack(self, __value, result.name, "$\\left\\lfloor\\frac{{{0}}}{{{1}}}\\right\\rfloor$")
+        binarytrack(
+            self,
+            __value,
+            result.name,
+            "$\\left\\lfloor\\frac{{{0}}}{{{1}}}\\right\\rfloor$",
+        )
         return result
 
     def __truediv__(self, __value):
@@ -191,7 +207,12 @@ class Variable:
 
     def __rfloordiv__(self, __value):
         result = generate_tmp(__value // self._value)
-        binarytrack(__value, self, result.name, "$\\left\\lfloor\\frac{{{0}}}{{{1}}}\\right\\rfloor$")
+        binarytrack(
+            __value,
+            self,
+            result.name,
+            "$\\left\\lfloor\\frac{{{0}}}{{{1}}}\\right\\rfloor$",
+        )
         return result
 
     def __rtruediv__(self, __value):
@@ -283,7 +304,7 @@ class Log:
         return self._collected
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     x = Variable("x", 0)
     y = Variable("y", 1)
 
