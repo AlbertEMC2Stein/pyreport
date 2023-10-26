@@ -13,7 +13,7 @@ def make_test_report():
         "title": "Annalen der Physik",
         "date": "",
         "maketoc": True,
-        "maketitle": False,
+        "maketitle": True,
         "type": "report",
         "titlepage": "notitlepage",
     }
@@ -46,3 +46,4 @@ def make_test_report():
 
 if __name__ == "__main__":
     make_test_report()
+    
