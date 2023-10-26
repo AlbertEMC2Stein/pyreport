@@ -11,7 +11,7 @@ Simplify your report creation process with pyreport. No LaTeX expertise required
 """
 
 from os import path
-from ._utils import get_tags
+from .utils import get_tags
 
 __all__ = ["get_info"]
 
