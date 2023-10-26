@@ -1,7 +1,7 @@
 """A module providing the Greek alphabet as symbols."""
 
 from pyreport.symbols import Symbol, SymbolCollection
-from pyreport._utils import Switch
+from pyreport.utils import Switch
 
 __all__ = [
     "DEFAULT_VAREPSILON",

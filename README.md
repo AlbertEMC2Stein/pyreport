@@ -96,7 +96,21 @@ Our development roadmap is structured to follow a bottom-up approach, starting w
     pip install .
     ```
 
+For development mode, use the following command instead:
+
+```bash
+pip install -e .
+```
+
 4. Use the provided examples and documentation to start automating your reports with pyreport.
+
+Once installed, you can generate a test report to validate your installation:
+
+```bash
+python examples/test_default.py
+```
+
+This will generate a test report in the `examples` directory.
 
 ## Usage
 To start generating reports, follow these basic steps:
