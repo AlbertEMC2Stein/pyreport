@@ -5,7 +5,6 @@ import os
 import sys
 
 from docs.makedocs import build
-from .report import make_test_report
 from . import get_info, ROOT_DIR
 
 
@@ -36,7 +35,7 @@ def run_test(args):
 
     _ = args
     print("Building test report...")
-    make_test_report()
+    os.system("python examples/test_default.py")
 
 
 def cli_entry():
