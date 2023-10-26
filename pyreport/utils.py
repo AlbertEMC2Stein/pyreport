@@ -62,17 +62,18 @@ def restricted_get(kwargs, key, allowed_keys_or_type, default):
         if isinstance(allowed_keys_or_type, list):
             if kwargs[key] in allowed_keys_or_type:
                 return kwargs[key]
-            else:
-                raise TypeError(
-                    f"Value for '{key}' must be one of {allowed_keys_or_type}."
-                )
-        elif isinstance(allowed_keys_or_type, type):
+
+            raise TypeError(
+                f"Value for '{key}' must be one of {allowed_keys_or_type}."
+            )
+
+        if isinstance(allowed_keys_or_type, type):
             if isinstance(kwargs[key], allowed_keys_or_type):
                 return kwargs[key]
-            else:
-                raise TypeError(
-                    f"Value for '{key}' must be of type {allowed_keys_or_type}."
-                )
+
+            raise TypeError(
+                f"Value for '{key}' must be of type {allowed_keys_or_type}."
+            )
     else:
         return default
 
