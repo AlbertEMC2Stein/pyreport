@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>pyreport.report API documentation</title>
-<meta name="description" content="A module to create LaTeX reports …" />
+<title>pyreport.utils API documentation</title>
+<meta name="description" content="Utility functions and classes for pyreport." />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css" crossorigin>
@@ -21,84 +21,58 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pyreport.report</code></h1>
+<h1 class="title">Module <code>pyreport.utils</code></h1>
 </header>
 <section id="section-intro">
-<p>A module to create LaTeX reports.</p>
-<p>This module provides a class to create LaTeX reports. It is based on the
-LaTeX document classes 'article' and 'report'. The report is created in the
-'out' folder and is compiled with 'latexmk'.</p>
+<p>Utility functions and classes for pyreport.</p>
 </section>
 <section>
 </section>
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pyreport.utils.get_tags"><code class="name flex">
+<span>def <span class="ident">get_tags</span></span>(<span>root)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a list of tags in a git repository.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>root</code></strong> :&ensp;<code>str</code></dt>
+<dd>The root of the git repository.</dd>
+</dl></div>
+</dd>
+</dl>
 </section>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pyreport.report.Reporter"><code class="flex name class">
-<span>class <span class="ident">Reporter</span></span>
-<span>(</span><span>report_name, type='report', fontsize=12, columns='onecolumn', titlepage='notitlepage', packages=[], author='', title='', date='\\today', maketitle=True, maketoc=False, save_path='./out', export_pdf=True)</span>
+<dt id="pyreport.utils.Switch"><code class="flex name class">
+<span>class <span class="ident">Switch</span></span>
+<span>(</span><span>name, option1, option2)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>A class to create LaTeX reports.</p>
-<p>Constructor for Reporter.</p>
+<div class="desc"><p>A simple switch class that can be used to toggle between two options.
+Can be called to get the current option.</p>
+<p>Constructor for the Switch class.</p>
 <h2 id="parameters">Parameters</h2>
 <dl>
-<dt><strong><code>report_name</code></strong> :&ensp;<code>str</code></dt>
-<dd>Name of report.</dd>
-<dt><strong><code>type</code></strong> :&ensp;<code>{"article", "report"}</code>, optional</dt>
-<dd>Type of report, by default "report".</dd>
-<dt><strong><code>fontsize</code></strong> :&ensp;<code>{10, 11, 12}</code>, optional</dt>
-<dd>Font size, by default 12.</dd>
-<dt><strong><code>columns</code></strong> :&ensp;<code>{"onecolumn", "twocolumn"}</code>, optional</dt>
-<dd>Number of columns, by default "onecolumn".</dd>
-<dt><strong><code>titlepage</code></strong> :&ensp;<code>{"notitlepage", "titlepage"}</code>, optional</dt>
-<dd>Title page, by default "notitlepage".</dd>
-<dt><strong><code>packages</code></strong> :&ensp;<code>list</code>, optional</dt>
-<dd>List of packages to import, by default [].</dd>
-<dt><strong><code>author</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Author of report, by default "".</dd>
-<dt><strong><code>title</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Title of report, by default "".</dd>
-<dt><strong><code>date</code></strong> :&ensp;<code>str</code>, optional</dt>
-<dd>Date of report, by default "\today".</dd>
-<dt><strong><code>maketitle</code></strong> :&ensp;<code>bool</code>, optional</dt>
-<dd>Make title, by default True.</dd>
-<dt><strong><code>maketoc</code></strong> :&ensp;<code>bool</code>, optional</dt>
-<dd>Make table of contents, by default False.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the switch.</dd>
+<dt><strong><code>option1</code></strong> :&ensp;<code>any</code></dt>
+<dd>The first option.</dd>
+<dt><strong><code>option2</code></strong> :&ensp;<code>any</code></dt>
+<dd>The second option.</dd>
 </dl></div>
 <h3>Methods</h3>
 <dl>
-<dt id="pyreport.report.Reporter.add_to_document"><code class="name flex">
-<span>def <span class="ident">add_to_document</span></span>(<span>self, obj)</span>
+<dt id="pyreport.utils.Switch.toggle"><code class="name flex">
+<span>def <span class="ident">toggle</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Adds an object to the document.</p>
-<h2 id="parameters">Parameters</h2>
-<dl>
-<dt><strong><code>obj</code></strong> :&ensp;<code>Environment, LaTeXObject</code></dt>
-<dd>Object to add to document.</dd>
-</dl></div>
-</dd>
-<dt id="pyreport.report.Reporter.print_structure"><code class="name flex">
-<span>def <span class="ident">print_structure</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Prints the structure of the report.</p></div>
-</dd>
-<dt id="pyreport.report.Reporter.report"><code class="name flex">
-<span>def <span class="ident">report</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Creates and compiles the report.</p>
-<h2 id="raises">Raises</h2>
-<dl>
-<dt><code>ReportError</code></dt>
-<dd>Raised when report cannot be made.</dd>
-</dl></div>
+<div class="desc"><p>Toggle the switch.</p></div>
 </dd>
 </dl>
 </dd>
@@ -167,14 +141,17 @@ setTimeout(() => input.focus(), 100);
 <li><code><a title="pyreport" href="index.html">pyreport</a></code></li>
 </ul>
 </li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pyreport.utils.get_tags" href="#pyreport.utils.get_tags">get_tags</a></code></li>
+</ul>
+</li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pyreport.report.Reporter" href="#pyreport.report.Reporter">Reporter</a></code></h4>
+<h4><code><a title="pyreport.utils.Switch" href="#pyreport.utils.Switch">Switch</a></code></h4>
 <ul class="">
-<li><code><a title="pyreport.report.Reporter.add_to_document" href="#pyreport.report.Reporter.add_to_document">add_to_document</a></code></li>
-<li><code><a title="pyreport.report.Reporter.print_structure" href="#pyreport.report.Reporter.print_structure">print_structure</a></code></li>
-<li><code><a title="pyreport.report.Reporter.report" href="#pyreport.report.Reporter.report">report</a></code></li>
+<li><code><a title="pyreport.utils.Switch.toggle" href="#pyreport.utils.Switch.toggle">toggle</a></code></li>
 </ul>
 </li>
 </ul>
