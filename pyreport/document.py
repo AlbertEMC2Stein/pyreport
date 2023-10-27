@@ -30,8 +30,9 @@ class Document(Environment):
         indented_write(file, indent_level, "\\begin{document}")
 
         if (self._title or self._author or self._date) and self._maketitle:
+            end = "\n" if self._maketitle else ""
             indented_write(
-                file, indent_level + 1, "\\maketitle\n" if self._maketitle else "", end=""
+                file, indent_level + 1, "\\maketitle" if self._maketitle else "", end=end
             )
 
         # small hack because those two options interfere with each other
@@ -70,6 +71,7 @@ class Preamble(LaTeXObject):
         "amssymb",
         "graphicx",
         "hyperref",
+        "booktabs",
     ]
 
     def __init__(self, type="report", fontsize=12, columns="onecolumn",
