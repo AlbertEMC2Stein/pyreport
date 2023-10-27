@@ -111,6 +111,10 @@ def indented_write(file, n, text, end="\n"):
     end : str
         The end character to use when writing the text.
     """
+    lines = text.split("\n")
+    for line in lines[:-1]:
+        file.write("\t" * n + line + "\n")
 
-    file.write("\t" * n + text + end)
+    file.write("\t" * n + lines[-1] + end)
+
     
