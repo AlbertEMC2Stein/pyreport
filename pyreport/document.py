@@ -1,3 +1,5 @@
+"""A module to hold the LaTeX document environment and preamble."""
+
 from .base import Environment, LaTeXObject
 from .utils import indented_write
 
@@ -13,8 +15,20 @@ class Document(Environment):
         ----------
         name : str, optional
             Name of document, by default "document".
-        **kwargs : dict
-            Arguments for document.
+        type : str, optional
+            Type of document, by default "report".
+        titlepage : str, optional
+            Titlepage option, by default "notitlepage".
+        title : str, optional
+            Title of document, by default "".
+        author : str, optional
+            Author of document, by default "".
+        date : str, optional
+            Date of document, by default "\\today".
+        maketitle : bool, optional
+            Whether to make a title, by default True.
+        maketoc : bool, optional
+            Whether to make a table of contents, by default False.
         """
 
         super().__init__(name)

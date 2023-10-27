@@ -1,3 +1,5 @@
+"""This module contains the abstract base class LaTeXObject."""
+
 from abc import ABC, abstractmethod
 
 

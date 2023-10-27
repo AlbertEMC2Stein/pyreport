@@ -1,3 +1,5 @@
+"""A module for generating regular LaTeX text."""
+
 from .base import LaTeXObject
 from .utils import indented_write
 

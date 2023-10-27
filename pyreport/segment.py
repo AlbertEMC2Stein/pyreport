@@ -1,3 +1,5 @@
+"""This module contains the Segment class, which is used to hold the LaTeX chapter, section, subsection, etc. environments."""
+
 from .base import Environment
 from .utils import indented_write
 

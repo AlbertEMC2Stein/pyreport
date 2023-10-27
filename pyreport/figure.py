@@ -1,3 +1,5 @@
+"""A module for generating LaTeX figures."""
+
 import os
 
 from .base import LaTeXObject

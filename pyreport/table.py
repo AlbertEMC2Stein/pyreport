@@ -1,3 +1,5 @@
+"""A module for generating LaTeX tables."""
+
 import pandas as pd
 
 from .base import LaTeXObject

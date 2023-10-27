@@ -1,3 +1,5 @@
+"""This module contains the Environment class, which is the abstract base class for all environments."""
+
 from abc import ABC, abstractmethod
 
 
