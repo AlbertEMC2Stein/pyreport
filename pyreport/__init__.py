@@ -1,4 +1,4 @@
-"""pyreport: Automate Your $\\LaTeX$ Reports with Python 📝
+"""pyreport: Automate Your LaTeX Reports with Python 📝
 
 Create elegant LaTeX reports effortlessly from your code with pyreport. Generate and populate reports with plots, tables, custom environments, commands, and structure, all within your Python environment. Say goodbye to LaTeX headaches and focus on your work while pyreport handles the document creation for you.
 

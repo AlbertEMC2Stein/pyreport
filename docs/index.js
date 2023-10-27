@@ -22,7 +22,7 @@ INDEX=[
 {
 "ref":"pyreport",
 "url":0,
-"doc":"pyreport: Automate Your $\\LaTeX$ Reports with Python \ud83d\udcdd Create elegant LaTeX reports effortlessly from your code with pyreport. Generate and populate reports with plots, tables, custom environments, commands, and structure, all within your Python environment. Say goodbye to LaTeX headaches and focus on your work while pyreport handles the document creation for you. - Automate LaTeX Reporting: Generate LaTeX reports seamlessly during your computations. - Dynamic Content: Add plots, tables, variable logs, and custom LaTeX elements effortlessly. - Structure Your Report: Define sections, chapters, and more for a well-organized document. - Focus on Your Work: Stop worrying about LaTeX intricacies and focus on your data and analysis. Simplify your report creation process with pyreport. No LaTeX expertise required."
+"doc":"pyreport: Automate Your LaTeX Reports with Python \ud83d\udcdd Create elegant LaTeX reports effortlessly from your code with pyreport. Generate and populate reports with plots, tables, custom environments, commands, and structure, all within your Python environment. Say goodbye to LaTeX headaches and focus on your work while pyreport handles the document creation for you. - Automate LaTeX Reporting: Generate LaTeX reports seamlessly during your computations. - Dynamic Content: Add plots, tables, variable logs, and custom LaTeX elements effortlessly. - Structure Your Report: Define sections, chapters, and more for a well-organized document. - Focus on Your Work: Stop worrying about LaTeX intricacies and focus on your data and analysis. Simplify your report creation process with pyreport. No LaTeX expertise required."
 },
 {
 "ref":"pyreport.get_info",
