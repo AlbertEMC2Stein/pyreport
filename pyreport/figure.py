@@ -36,9 +36,11 @@ class Image(LaTeXObject):
         os.makedirs(os.path.dirname(image_file), exist_ok=True)
         os.system(f"cp {self._image_file} {image_file}")
         tex = "\\begin{figure}[ht]\n"
-        tex += "\\centering\n"
-        tex += f"\\includegraphics[width={self._width}\\linewidth]{{{os.path.join('figures', image_name)}}}\n"
-        tex += f"\\caption{{{self._caption}}}\n" if self._caption else ""
-        tex += f"\\label{{fig:{self._label}}}\n" if self._label else ""
+        tex += "\t\\centering\n"
+        tex += f"\t\\includegraphics[width={self._width}\\linewidth]{{{os.path.join('figures', image_name)}}}\n"
+        tex += f"\t\\caption{{{self._caption}}}\n" if self._caption else ""
+        tex += f"\t\\label{{fig:{self._label}}}\n" if self._label else ""
         tex += "\\end{figure}\n"
+
+
         indented_write(file, indent_level, tex)
