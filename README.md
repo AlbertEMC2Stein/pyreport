@@ -1,3 +1,10 @@
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/AlbertEMC2Stein/pyreport?style=for-the-badge)
+[![GitHub stars](https://img.shields.io/github/stars/AlbertEMC2Stein/pyreport?style=for-the-badge)](https://github.com/AlbertEMC2Stein/pyreport)
+[![GitHub forks](https://img.shields.io/github/forks/AlbertEMC2Stein/pyreport?style=for-the-badge)](https://github.com/AlbertEMC2Stein/pyreport)
+![License](https://img.shields.io/badge/license-APACHE%202.0-blue.svg?style=for-the-badge)
+[![Documentation](https://img.shields.io/badge/Documentation-Here-green?style=for-the-badge)](https://albertemc2stein.github.io/pyreport/)
+
 # pyreport: Automate Your LaTeX Reports with Python 📝
 <p align="center">
   <img src="https://raw.githubusercontent.com/AlbertEMC2Stein/pyreport/main/docs/images/pyreport.png" width=250 style="border-radius:20px"/>
