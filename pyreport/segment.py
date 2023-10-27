@@ -1,5 +1,14 @@
-from .base import Environment, _level_prefix_assignment
+from .base import Environment
 from .utils import indented_write
+
+
+_level_prefix_assignment = {
+    "chapter": (0, "ch"),
+    "section": (1, "sec"),
+    "subsection": (2, "ssec"),
+    "subsubsection": (3, "sssec"),
+    "paragraph": (4, "par"),
+}
 
 
 class Segment(Environment):

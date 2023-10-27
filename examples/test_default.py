@@ -1,4 +1,4 @@
-from pyreport.section import Segment
+from pyreport.segment import Segment
 from pyreport.figure import Image
 from pyreport.table import Table
 from pyreport.text import PlainText
