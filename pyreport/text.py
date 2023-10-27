@@ -20,5 +20,4 @@ class PlainText(LaTeXObject):
         self._text = text
 
     def texify(self, file, indent_level=0):
-        tex = self._text.replace("\n", "\n\n")
-        indented_write(file, indent_level, tex)
+        indented_write(file, indent_level, self._text, end="\n\n")
