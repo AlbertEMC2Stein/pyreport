@@ -322,6 +322,12 @@
       background: lightpink;
       color: #51534A;
     }
+    .admonition  code {
+      background: #DBE2E9;
+      color: #51534A;
+      padding: 1px 4px;
+      overflow-wrap: break-word;
+    }
 </%def>
 
 <%def name="desktop()" filter="minify_css">
